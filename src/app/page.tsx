@@ -71,7 +71,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <div className="w-full max-w-sm p-4 rounded-sm sm:p-6">
-                <Image src="/mapa_choco.png" alt="SYNAPSE Logo" width={800} height={800} className="h-auto w-full object-contain" />
+                <Image src="/mapa_choco1.png" alt="Mapa chocó" width={1000} height={1000} className="h-full w-full object-contain" />
               </div>
             </div>
           </div>
