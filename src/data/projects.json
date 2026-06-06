@@ -1,0 +1,95 @@
+[
+    {
+        "id": "1",
+        "title": "Modelos predictivos sobre la deserción universitaria",
+        "slug": "predictor-desercion",
+        "description": "Diseño y construcción de modelos de machine learning para predecir el riesgo de deserción universitaria y apoyar la toma de decisiones institucionales en las IES de Quibdó.",
+        "status": "activo",
+        "year": 2025,
+        "technologies": [
+            "Machine Learning",
+            "Analítica educativa",
+            "Python"
+        ],
+        "team": [
+            "Semillero SYNAPSE",
+            "Instituciones de educación superior de Quibdó"
+        ],
+        "activities": [
+            "Recolección y preparación de datos académicos, socioeconómicos y comportamentales.",
+            "Implementación de algoritmos predictivos de clasificación, regresión y clustering.",
+            "Evaluación y validación de modelos con métricas de desempeño.",
+            "Generación de alertas tempranas y recomendaciones de intervención."
+        ],
+        "expectedImpact": [
+            "Reducción de la deserción universitaria en instituciones de la región.",
+            "Identificación temprana de estudiantes en riesgo.",
+            "Mejora en la planeación de estrategias de permanencia.",
+            "Uso eficiente de recursos para intervenciones focalizadas."
+        ],
+        "image": "/projects/predictor.jpg",
+        "repository": "#"
+    },
+    {
+        "id": "2",
+        "title": "Observatorio digital de convivencia estudiantil",
+        "slug": "observatorio-convivencia",
+        "description": "Plataforma digital que permite llevar la trazabilidad de los problemas de convivencia estudiantil para su análisis, seguimiento y generación de reportes que apoyen la toma de decisiones en instituciones educativas.",
+        "status": "activo",
+        "year": 2025,
+        "technologies": [
+            "Desarrollo web",
+            "Visualización de datos",
+            "Analítica institucional"
+        ],
+        "team": [
+            "Semillero SYNAPSE",
+            "Instituciones de educación media de Quibdó"
+        ],
+        "activities": [
+            "Diseño e implementación de una plataforma web para registro y seguimiento de casos.",
+            "Análisis de datos para identificar patrones y factores de riesgo.",
+            "Generación de tableros de visualización e informes periódicos.",
+            "Acompañamiento a las instituciones en el uso y gestión de la información."
+        ],
+        "expectedImpact": [
+            "Mejora del clima escolar y la convivencia institucional.",
+            "Toma de decisiones basada en evidencia para prevenir conflictos.",
+            "Fortalecimiento de la gestión institucional y del trabajo orientador.",
+            "Construcción de entornos escolares más seguros e inclusivos."
+        ],
+        "image": "/projects/observatorio.jpg",
+        "repository": "#"
+    },
+    {
+        "id": "3",
+        "title": "Sistema comunitario para monitoreo de inundaciones y riesgos climáticos",
+        "slug": "monitoreo-inundaciones-riesgos",
+        "description": "Sistema que utiliza sensores, estaciones básicas y reportes móviles para alertar sobre crecientes, lluvias intensas o afectaciones en zonas vulnerables de Quibdó.",
+        "status": "activo",
+        "year": 2025,
+        "technologies": [
+            "IoT",
+            "Sensores",
+            "Aplicaciones móviles"
+        ],
+        "team": [
+            "Semillero SYNAPSE",
+            "Comunidades vulnerables de Quibdó"
+        ],
+        "activities": [
+            "Instalación y configuración de sensores y estaciones básicas.",
+            "Desarrollo de aplicación móvil para reportes comunitarios.",
+            "Procesamiento y visualización de datos en tiempo real.",
+            "Sistema de alertas tempranas vía SMS, app y mapas de riesgo."
+        ],
+        "expectedImpact": [
+            "Alertas oportunas que salvan vidas y reducen pérdidas materiales.",
+            "Mayor preparación comunitaria ante eventos climáticos extremos.",
+            "Información en tiempo real para apoyar a organismos de gestión del riesgo.",
+            "Fortalecimiento de la resiliencia territorial."
+        ],
+        "image": "/projects/monitoreo-inundaciones.jpg",
+        "repository": "#"
+    }
+]

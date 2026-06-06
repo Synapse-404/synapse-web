@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "title": "AtratoAlert gana reconocimiento en concurso nacional de innovación social",
+        "slug": "atratoalert-premio-nacional",
+        "excerpt": "El sistema de alertas tempranas fue destacado por su impacto comunitario y uso de tecnología de bajo costo.",
+        "date": "2025-04-10",
+        "author": "Ana María Rivas",
+        "content": "El pasado mes de marzo, AtratoAlert recibió el premio a la Innovación Social en la categoría Tecnología Ambiental. Este reconocimiento valida el trabajo colaborativo con las comunidades ribereñas del río Atrato...",
+        "image": "/blog/atratoalert-premio.jpg"
+    },
+    {
+        "id": "2",
+        "title": "Nuevo convenio con la Gobernación del Chocó para ampliar monitoreo ambiental",
+        "slug": "convenio-gobernacion-choco",
+        "excerpt": "El acuerdo permitirá desplegar 50 sensores adicionales en municipios de alta vulnerabilidad.",
+        "date": "2025-03-15",
+        "author": "Carlos Andrés Mena",
+        "content": "La Gobernación del Chocó ha destinado recursos para expandir la red de monitoreo de AtratoAlert. El objetivo es llegar a 10 nuevos municipios antes de finalizar 2025...",
+        "image": "/blog/convenio.jpg"
+    },
+    {
+        "id": "3",
+        "title": "Semilleristas participan en congreso internacional de inteligencia artificial",
+        "slug": "congreso-ia-2025",
+        "excerpt": "Presentaron dos ponencias sobre modelos predictivos de deserción y procesamiento de lenguaje natural para lenguas indígenas.",
+        "date": "2025-02-20",
+        "author": "Lina Marcela Palacios",
+        "content": "El Congreso Latinoamericano de IA (CILA 2025) aceptó dos trabajos del semillero. El equipo tuvo la oportunidad de intercambiar experiencias con investigadores de toda la región...",
+        "image": "/blog/congreso-ia.jpg"
+    }
+]

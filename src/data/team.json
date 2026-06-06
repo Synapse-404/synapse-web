@@ -1,0 +1,107 @@
+[
+    {
+        "id": "1",
+        "name": "Carlos Stiwar Asprilla Mosquera",
+        "role": "Docente lider",
+        "group": "docente",
+        "groupRole": "Docente",
+        "bio": "Coordina la orientación académica del semillero, acompaña las líneas de investigación y articula alianzas institucionales para fortalecer el impacto territorial de SYNAPSE.",
+        "responsibilities": [
+            "Definir la orientación académica y metodológica del semillero.",
+            "Acompañar la formulación de proyectos y productos de investigación.",
+            "Gestionar alianzas académicas e institucionales."
+        ],
+        "image": "/avatar-placeholder.png",
+        "social": {
+            "linkedin": "https://linkedin.com/in/stiwar-asprilla",
+            "github": "https://github.com/stiwar9816"
+        }
+    },
+    {
+        "id": "6",
+        "name": "Luis Delascar Valencia Mena",
+        "role": "Docente lider",
+        "group": "docente",
+        "groupRole": "Docente",
+        "bio": "Acompaña la orientación académica, metodológica e institucional del semillero junto al otro docente líder, fortaleciendo el seguimiento de proyectos y la articulación con los grupos de trabajo.",
+        "responsibilities": [
+            "Acompañar la orientación académica y metodológica del semillero.",
+            "Apoyar el seguimiento de proyectos, productos y compromisos.",
+            "Articular decisiones académicas con la coordinación operativa y los líderes de grupo."
+        ],
+        "image": "/avatar-placeholder.png",
+        "social": {
+            "linkedin": "https://www.linkedin.com/in/luis-delascar-valencia-mena-6803441a/",
+            "github": "https://github.com/luisdelascar"
+        }
+    },
+    {
+        "id": "2",
+        "name": "Laura",
+        "role": "Líder de investigación",
+        "group": "investigación",
+        "groupRole": "Investigación",
+        "bio": "Lidera la estructuración metodológica de los proyectos, el análisis de datos y la producción académica derivada de las iniciativas del semillero.",
+        "responsibilities": [
+            "Diseñar metodologías de investigación aplicada.",
+            "Coordinar recolección, análisis y validación de datos.",
+            "Acompañar publicaciones, ponencias y productos académicos."
+        ],
+        "image": "/avatar-placeholder.png",
+        "social": {
+            "github": "https://github.com/camena",
+            "linkedin": "https://linkedin.com/in/carlos-mena"
+        }
+    },
+    {
+        "id": "3",
+        "name": "Josser",
+        "role": "Líder de desarrollo",
+        "group": "desarrollo",
+        "groupRole": "Desarrollo",
+        "bio": "Coordina la construcción de plataformas web, prototipos, tableros y soluciones de software que materializan los proyectos de investigación del semillero.",
+        "responsibilities": [
+            "Planear y supervisar el desarrollo de soluciones web y móviles.",
+            "Definir estándares técnicos para prototipos y plataformas.",
+            "Integrar visualización de datos y experiencia de usuario."
+        ],
+        "image": "/avatar-placeholder.png",
+        "social": {
+            "github": "https://github.com/lpalacios",
+            "linkedin": "https://linkedin.com/in/lina-palacios"
+        }
+    },
+    {
+        "id": "4",
+        "name": "Osfary Yiseth Mosquera",
+        "role": "Líder de documentación",
+        "group": "documentación",
+        "groupRole": "Documentación",
+        "bio": "Acompaña la documentación técnica, bitácoras de trabajo, evidencias de avances y sistematización de resultados de los proyectos del semillero.",
+        "responsibilities": [
+            "Organizar actas, bitácoras y evidencias de avance.",
+            "Documentar procesos técnicos y metodológicos.",
+            "Apoyar la preparación de informes y entregables."
+        ],
+        "image": "/avatar-placeholder.png",
+        "social": {
+            "github": "https://github.com/jorgemosquera"
+        }
+    },
+    {
+        "id": "5",
+        "name": "Juan Sebastian Rada",
+        "role": "Coordinación operativa y seguimiento",
+        "group": "coordinación",
+        "groupRole": "Enlace entre grupos y liderazgo",
+        "bio": "Persona encargada de fiscalizar que los grupos de desarrollo, investigación y documentación cumplan sus compromisos, consolidar avances y servir como enlace con los líderes de cada grupo y los docentes líderes del semillero.",
+        "responsibilities": [
+            "Hacer seguimiento al cumplimiento de tareas por grupo.",
+            "Consolidar avances, bloqueos y compromisos.",
+            "Articular la comunicación entre líderes de grupo y docentes líderes.",
+            "Alertar retrasos y proponer acciones de mejora."
+        ],
+        "image": "/avatar-placeholder.png",
+        "social": {}
+    }
+]

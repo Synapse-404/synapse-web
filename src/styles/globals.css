@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@layer base {
+  @font-face {
+    font-family: 'OCR A Extended';
+    src: local('OCR A Extended'), local('OCRAExtended'), local('OCR A');
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem; /* altura del navbar fijo */
+  }
+
+  body {
+    /* Usa las variables CSS inyectadas por next/font */
+    font-family: var(--font-space), 'Space Grotesk', sans-serif;
+    @apply bg-synapse-gray-light text-synapse-black;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'OCR A Extended', 'Courier New', monospace;
+  }
+
+  .font-mono-custom {
+    font-family: var(--font-dm), 'DM Mono', monospace;
+  }
+}
