@@ -8,17 +8,15 @@ import ProjectCard from "@/components/ProjectCard";
 import PublicationCard from "@/components/PublicationCard";
 import BlogCard from "@/components/BlogCard";
 import TeamCard from "@/components/TeamCard";
-import { Project, Publication, BlogPost, TeamMember } from "@/types";
+import { Project, Publication, BlogPost } from "@/types";
 import projectsData from "@/data/projects.json";
 import publicationsData from "@/data/publications.json";
 import blogData from "@/data/blog.json";
-import teamData from "@/data/team.json";
+import { team, featuredTeam } from "@/lib/team";
 
 const projects = projectsData as Project[];
 const publications = publicationsData as Publication[];
 const blogPosts = blogData as BlogPost[];
-const team = teamData as TeamMember[];
-const featuredTeam = team.slice(0, 4);
 const activeProjectsCount = projects.filter((project) => project.status === "activo").length;
 const publicationsCount = publications.length;
 const teamMembersCount = team.length;
@@ -219,7 +217,7 @@ export default function Home() {
           <div className="flex overflow-x-auto gap-4 pb-4 snap-x">
             {[1, 2, 3, 4].map(i => (
               <div key={i} className="flex-shrink-0 w-80 bg-white rounded-sm overflow-hidden shadow-md snap-start">
-                <div className="h-48 bg-synapse-yellow/20 flex items-center justify-center text-gray-500">📸 Imagen {i}</div>
+                <div className="h-48 bg-synapse-yellow/20 flex items-center justify-center text-gray-500">Imagen {i}</div>
                 <div className="p-4"><p className="text-sm font-mono text-gray-600">Evento {i} - 2025</p></div>
               </div>
             ))}

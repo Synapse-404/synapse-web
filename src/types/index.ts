@@ -52,9 +52,7 @@ export interface TeamMember {
     groupRole?: string;
     bio: string;
     responsibilities?: string[];
-    image?: string;
-    social?: {
-        linkedin?: string;
-        github?: string;
-    };
+    image?: string | null;
+    featured?: boolean;
+    social?: Record<string, string>;
 }

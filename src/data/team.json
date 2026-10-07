@@ -11,11 +11,12 @@
             "Acompañar la formulación de proyectos y productos de investigación.",
             "Gestionar alianzas académicas e institucionales."
         ],
-        "image": "/avatar-placeholder.png",
+        "image": "/team/stiwar.png",
         "social": {
             "linkedin": "https://linkedin.com/in/stiwar-asprilla",
             "github": "https://github.com/stiwar9816"
-        }
+        },
+        "featured": true
     },
     {
         "id": "6",
@@ -29,15 +30,16 @@
             "Apoyar el seguimiento de proyectos, productos y compromisos.",
             "Articular decisiones académicas con la coordinación operativa y los líderes de grupo."
         ],
-        "image": "/avatar-placeholder.png",
+        "image": null,
         "social": {
             "linkedin": "https://www.linkedin.com/in/luis-delascar-valencia-mena-6803441a/",
             "github": "https://github.com/luisdelascar"
-        }
+        },
+        "featured": true
     },
     {
         "id": "2",
-        "name": "Laura",
+        "name": "Laura Daniela Blandon Cordoba",
         "role": "Líder de investigación",
         "group": "investigación",
         "groupRole": "Investigación",
@@ -47,15 +49,16 @@
             "Coordinar recolección, análisis y validación de datos.",
             "Acompañar publicaciones, ponencias y productos académicos."
         ],
-        "image": "/avatar-placeholder.png",
+        "image": null,
         "social": {
             "github": "https://github.com/camena",
             "linkedin": "https://linkedin.com/in/carlos-mena"
-        }
+        },
+        "featured": true
     },
     {
         "id": "3",
-        "name": "Josser",
+        "name": "Josser Cordoba Rivas",
         "role": "Líder de desarrollo",
         "group": "desarrollo",
         "groupRole": "Desarrollo",
@@ -65,15 +68,16 @@
             "Definir estándares técnicos para prototipos y plataformas.",
             "Integrar visualización de datos y experiencia de usuario."
         ],
-        "image": "/avatar-placeholder.png",
+        "image": null,
         "social": {
             "github": "https://github.com/lpalacios",
             "linkedin": "https://linkedin.com/in/lina-palacios"
-        }
+        },
+        "featured": true
     },
     {
         "id": "4",
-        "name": "Osfary Yiseth Mosquera",
+        "name": "Osfary Yiseth Salcedo Palacios",
         "role": "Líder de documentación",
         "group": "documentación",
         "groupRole": "Documentación",
@@ -83,14 +87,15 @@
             "Documentar procesos técnicos y metodológicos.",
             "Apoyar la preparación de informes y entregables."
         ],
-        "image": "/avatar-placeholder.png",
+        "image": null,
         "social": {
             "github": "https://github.com/jorgemosquera"
-        }
+        },
+        "featured": false
     },
     {
         "id": "5",
-        "name": "Juan Sebastian Rada",
+        "name": "Juan Sebastian Rada Salcedo",
         "role": "Coordinación operativa y seguimiento",
         "group": "coordinación",
         "groupRole": "Enlace entre grupos y liderazgo",
@@ -101,7 +106,136 @@
             "Articular la comunicación entre líderes de grupo y docentes líderes.",
             "Alertar retrasos y proponer acciones de mejora."
         ],
-        "image": "/avatar-placeholder.png",
-        "social": {}
+        "image": null,
+        "social": {},
+        "featured": false
+    },
+    {
+        "id": "6",
+        "name": "Deiner David Bello Gonzalez",
+        "role": "Co-Líder de desarrollo",
+        "group": "desarrollo",
+        "groupRole": "Desarrollo",
+        "bio": "Coordinar la construcción de plataformas web, prototipos, tableros y soluciones de software que materializan los proyectos de investigación del semillero.",
+        "responsibilities": [
+            "Planear y supervisar el desarrollo de soluciones web y móviles.",
+            "Definir estándares técnicos para prototipos y plataformas.",
+            "Integrar visualización de datos y experiencia de usuario."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "7",
+        "name": "Adrian Stiven Murillo Palacios",
+        "role": "Desarrollador",
+        "group": "desarrollo",
+        "groupRole": "Desarrollo",
+        "bio": "Desarrollador encargado de la construcción de plataformas web, prototipos, tableros y soluciones de software que materializan los proyectos de investigación del semillero.",
+        "responsibilities": [
+            "Apoyar la construcción de soluciones web y móviles.",
+            "Implementar estándares técnicos para prototipos y plataformas.",
+            "Integrar visualización de datos y experiencia de usuario."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "8",
+        "name": "Yeison Yair Ibarguen Perea",
+        "role": "Desarrollador",
+        "group": "desarrollo",
+        "groupRole": "Desarrollo",
+        "bio": "Desarrollador encargado de la construcción de plataformas web, prototipos, tableros y soluciones de software que materializan los proyectos de investigación del semillero.",
+        "responsibilities": [
+            "Apoyar la construcción de soluciones web y móviles.",
+            "Definir estándares técnicos para prototipos y plataformas.",
+            "Integrar visualización de datos y experiencia de usuario."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "9",
+        "name": "Glenfor Stywar Mosquera Rovira",
+        "role": "Documentador",
+        "group": "documentación",
+        "groupRole": "Documentación",
+        "bio": "Encargado de la documentación, análisis de datos y producción académica derivada de las iniciativas del semillero.",
+        "responsibilities": [
+            "Apoyar la documentación de nuevas tecnologías.",
+            "Recolección, análisis y validación de datos.",
+            "Participar en la producción de resultados académicos."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "10",
+        "name": "Elsa Mery Palacios Salinas",
+        "role": "Investigadora",
+        "group": "investigación",
+        "groupRole": "Investigación",
+        "bio": "Encargada de la investigación, análisis de datos y producción académica derivada de las iniciativas del semillero.",
+        "responsibilities": [
+            "Apoyar la investigación de nuevas tecnologías.",
+            "Recolección, análisis y validación de datos.",
+            "Participar en la producción de resultados académicos."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "11",
+        "name": "Alvaro Chaverra Palacios",
+        "role": "Documentador",
+        "group": "documentación",
+        "groupRole": "Documentación",
+        "bio": "Encargado de la documentación, análisis de datos y producción académica derivada de las iniciativas del semillero.",
+        "responsibilities": [
+            "Apoyar la documentación de nuevas tecnologías.",
+            "Recolección, análisis y validación de datos.",
+            "Participar en la producción de resultados académicos."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "12",
+        "name": "Gisella Asprilla Palomeque",
+        "role": "Documentadora",
+        "group": "documentación",
+        "groupRole": "Documentación",
+        "bio": "Encargada de la documentación, análisis de datos y producción académica derivada de las iniciativas del semillero.",
+        "responsibilities": [
+            "Apoyar la documentación de nuevas tecnologías.",
+            "Recolección, análisis y validación de datos.",
+            "Participar en la producción de resultados académicos."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
+    },
+    {
+        "id": "13",
+        "name": "Kenneth Ranses Arriaga Wnfried",
+        "role": "Investigador",
+        "group": "investigación",
+        "groupRole": "Investigación",
+        "bio": "Encargado de la investigación, análisis de datos y producción académica derivada de las iniciativas del semillero.",
+        "responsibilities": [
+            "Apoyar la investigación de nuevas tecnologías.",
+            "Recolección, análisis y validación de datos.",
+            "Participar en la producción de resultados académicos."
+        ],
+        "image": null,
+        "social": {},
+        "featured": true
     }
 ]

@@ -20,7 +20,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm run validate:team && next build",
+    "validate:team": "node scripts/validate-team.mjs",
     "start": "next start",
     "lint": "eslint"
   },

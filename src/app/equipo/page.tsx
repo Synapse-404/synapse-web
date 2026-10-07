@@ -1,8 +1,6 @@
 import TeamCard from "@/components/TeamCard";
-import teamData from "@/data/team.json";
+import { team } from "@/lib/team";
 import { TeamMember } from "@/types";
-
-const team = teamData as TeamMember[];
 
 const groupOrder: Array<NonNullable<TeamMember["group"]>> = [
     "docente",

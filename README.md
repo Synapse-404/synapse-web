@@ -120,3 +120,45 @@ public/        Recursos públicos
 ## Nota
 
 El contenido del sitio está organizado para poder migrarse posteriormente a un CMS. Mientras tanto, la información se administra desde archivos JSON en `src/data`.
+
+## Administrar integrantes del equipo
+
+La fuente única es `src/data/team.json`. El inicio, `/equipo`, los perfiles
+`/equipo/[id]` y `GET /api/team` obtienen los integrantes de ese archivo.
+
+1. Guarda la fotografía en `public/equipo/` (crea la carpeta si no existe) o utiliza una URL HTTPS pública.
+2. Añade o modifica el integrante en el JSON. Usa una ruta como `/equipo/nombre.jpg`, sin el prefijo `public`.
+3. Ejecuta `pnpm run validate:team`. La compilación también ejecuta esta validación.
+4. Guarda y publica los cambios mediante el despliegue habitual. En producción hace falta volver a compilar y desplegar para actualizar las páginas estáticas.
+
+Ejemplo de estructura (reemplaza los datos y enlaces de ejemplo antes de añadirlo):
+
+```json
+{
+  "id": "nuevo-integrante",
+  "name": "Nombre completo",
+  "role": "Integrante de desarrollo",
+  "group": "desarrollo",
+  "groupRole": "Desarrollo",
+  "bio": "Presentación del integrante.",
+  "responsibilities": ["Responsabilidad principal."],
+  "image": null,
+  "featured": false,
+  "social": {
+    "github": "https://github.com/usuario",
+    "linkedin": "https://www.linkedin.com/in/usuario",
+    "instagram": "https://www.instagram.com/usuario",
+    "website": "https://example.com"
+  }
+}
+```
+
+- `id`: identificador único y estable para la URL del perfil; usa letras sin tildes, números, guiones o guiones bajos.
+- `group`: `docente`, `coordinación`, `investigación`, `desarrollo` o `documentación`.
+- `image`: ruta local o URL HTTPS. Con `null`, sin imagen o si la carga falla, se muestran las iniciales. Las imágenes locales usan la optimización de Next.js; las externas se cargan directamente desde su URL.
+- `featured`: `true` muestra al integrante también en el inicio. El orden de las tarjetas sigue el orden del JSON.
+- `social`: añade únicamente redes reales. Puedes omitirlo o usar `{}`. Se admiten más redes, como `facebook`, `x`, `youtube`, `tiktok` u `orcid`; cualquier otra clave se muestra como etiqueta del enlace.
+
+Las fotografías de Carlos están disponibles como `/retrato.png` y `/retrato2.png`; el campo `image` de su registro elige cuál mostrar.
+Las URLs externas se validan por formato; no se comprueba su disponibilidad ni la titularidad de los perfiles.
+Este flujo administra contenido desde el repositorio: las imágenes se guardan como archivos y el JSON centraliza sus referencias. No incluye un formulario de subida ni almacenamiento remoto.
