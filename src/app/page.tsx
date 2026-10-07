@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="min-h-screen bg-synapse-black flex items-center relative overflow-hidden">
+      <section className="min-h-[calc(100svh-var(--navbar-height))] bg-synapse-black flex items-center relative overflow-hidden py-12 md:py-16">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#F5A800 1px, transparent 1px), linear-gradient(90deg, #F5A800 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">

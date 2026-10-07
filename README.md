@@ -1,12 +1,12 @@
-# SYNAPSE Web
+# Sitio web del Semillero de Investigación SYNAPSE
 
-Sitio web institucional del Semillero de Investigación SYNAPSE de la Fundación Universitaria Claretiana, sede Quibdó. La plataforma comunica la identidad del semillero, su propósito, líneas de trabajo, impacto esperado, equipo y mecanismos de vinculación.
+Sitio web del Semillero de Investigación SYNAPSE de la Fundación Universitaria Claretiana, sede Quibdó. La plataforma comunica la identidad del semillero, su propósito, líneas de trabajo, impacto esperado, equipo y mecanismos de vinculación.
 
 ## Sobre SYNAPSE
 
-SYNAPSE es un espacio de formación, investigación e innovación enfocado en el desarrollo de soluciones de software y en la generación de conocimiento que aporte al crecimiento académico y social.
+SYNAPSE es un semillero de investigación enfocado en el desarrollo de soluciones de software y en la generación de conocimiento que aportan al crecimiento académico y social.
 
-El semillero trabaja desde un enfoque territorial, orientado a transformar realidades locales mediante tecnología, investigación aplicada y análisis de datos.
+El semillero trabaja desde un enfoque territorial, orientado a transformar realidades locales mediante tecnología, investigación, desarrollo de software y análisis de datos.
 
 ## Lema
 
@@ -126,8 +126,8 @@ El contenido del sitio está organizado para poder migrarse posteriormente a un 
 La fuente única es `src/data/team.json`. El inicio, `/equipo`, los perfiles
 `/equipo/[id]` y `GET /api/team` obtienen los integrantes de ese archivo.
 
-1. Guarda la fotografía en `public/equipo/` (crea la carpeta si no existe) o utiliza una URL HTTPS pública.
-2. Añade o modifica el integrante en el JSON. Usa una ruta como `/equipo/nombre.jpg`, sin el prefijo `public`.
+1. Guarda la fotografía en `public/team/` (crea la carpeta si no existe) o utiliza una URL HTTPS pública.
+2. Añade o modifica el integrante en el JSON. Usa una ruta como `/team/nombre.jpg`, sin el prefijo `public`.
 3. Ejecuta `pnpm run validate:team`. La compilación también ejecuta esta validación.
 4. Guarda y publica los cambios mediante el despliegue habitual. En producción hace falta volver a compilar y desplegar para actualizar las páginas estáticas.
 
@@ -141,7 +141,7 @@ Ejemplo de estructura (reemplaza los datos y enlaces de ejemplo antes de añadir
   "group": "desarrollo",
   "groupRole": "Desarrollo",
   "bio": "Presentación del integrante.",
-  "responsibilities": ["Responsabilidad principal."],
+  "responsibilities": ["Responsabilidad principal.", "Otra responsabilidad."],
   "image": null,
   "featured": false,
   "social": {
@@ -156,9 +156,5 @@ Ejemplo de estructura (reemplaza los datos y enlaces de ejemplo antes de añadir
 - `id`: identificador único y estable para la URL del perfil; usa letras sin tildes, números, guiones o guiones bajos.
 - `group`: `docente`, `coordinación`, `investigación`, `desarrollo` o `documentación`.
 - `image`: ruta local o URL HTTPS. Con `null`, sin imagen o si la carga falla, se muestran las iniciales. Las imágenes locales usan la optimización de Next.js; las externas se cargan directamente desde su URL.
-- `featured`: `true` muestra al integrante también en el inicio. El orden de las tarjetas sigue el orden del JSON.
+- `featured`: el inicio muestra como máximo los primeros cuatro integrantes con `true`, siguiendo el orden del JSON. La página `/equipo` conserva el listado completo.
 - `social`: añade únicamente redes reales. Puedes omitirlo o usar `{}`. Se admiten más redes, como `facebook`, `x`, `youtube`, `tiktok` u `orcid`; cualquier otra clave se muestra como etiqueta del enlace.
-
-Las fotografías de Carlos están disponibles como `/retrato.png` y `/retrato2.png`; el campo `image` de su registro elige cuál mostrar.
-Las URLs externas se validan por formato; no se comprueba su disponibilidad ni la titularidad de los perfiles.
-Este flujo administra contenido desde el repositorio: las imágenes se guardan como archivos y el JSON centraliza sus referencias. No incluye un formulario de subida ni almacenamiento remoto.

@@ -2,6 +2,17 @@
 @config "../../tailwind.config.js";
 
 @layer base {
+  :root {
+    /* Misma altura para navegación fija, contenido y enlaces de sección. */
+    --navbar-height: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --navbar-height: 6rem;
+    }
+  }
+
   @font-face {
     font-family: 'OCR A Extended';
     src: local('OCR A Extended'), local('OCRAExtended'), local('OCR A');
@@ -11,7 +22,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4.5rem; /* altura del navbar fijo */
+    scroll-padding-top: calc(var(--navbar-height) + 1rem);
   }
 
   body {

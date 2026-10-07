@@ -19,19 +19,19 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 z-50 w-full bg-synapse-black px-5 py-4 shadow-lg md:px-12">
-            <div className="flex items-center justify-between gap-4">
+        <nav className="fixed top-0 left-0 z-50 h-[var(--navbar-height)] w-full bg-synapse-black px-5 shadow-lg md:px-12" aria-label="Navegación principal">
+            <div className="flex h-full items-center justify-between gap-4">
                 <Link
                     href="/"
-                    className="font-mono tracking-widest"
+                    className="min-w-0 shrink font-mono tracking-widest"
                     onClick={() => setIsMenuOpen(false)}
                 >
-                    <Image src="/Recurso7.png" alt="SYNAPSE Logo" width={130} height={100} className="h-auto w-full object-contain" />
+                    <Image src="/Recurso7.png" alt="SYNAPSE Logo" width={130} height={100} className="h-14 w-auto max-w-full object-contain lg:h-16" />
                 </Link>
 
                 <button
                     type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-white/15 text-white transition hover:border-synapse-yellow hover:text-synapse-yellow md:hidden"
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 text-white transition hover:border-synapse-yellow hover:text-synapse-yellow lg:hidden"
                     aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                     aria-expanded={isMenuOpen}
                     aria-controls="mobile-menu"
@@ -45,7 +45,7 @@ const Navbar = () => {
                     </span>
                 </button>
 
-                <ul className="hidden items-center gap-6 lg:gap-8 md:flex">
+                <ul className="hidden items-center gap-6 xl:gap-8 lg:flex">
                     {links.map((link) => (
                         <li key={link.href}>
                             <Link
@@ -61,9 +61,10 @@ const Navbar = () => {
 
             <div
                 id="mobile-menu"
-                className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-200 md:hidden ${isMenuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                hidden={!isMenuOpen}
+                className="absolute inset-x-0 top-full max-h-[calc(100dvh-var(--navbar-height))] overflow-y-auto bg-synapse-black px-5 pb-4 shadow-lg md:px-12 lg:hidden"
             >
-                <ul className="min-h-0 divide-y divide-white/10 pt-4">
+                <ul className="divide-y divide-white/10 border-t border-white/10">
                     {links.map((link) => (
                         <li key={link.href}>
                             <Link

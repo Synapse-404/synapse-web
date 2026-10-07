@@ -23,7 +23,7 @@ export default function RootLayout({
         <html lang="es" suppressHydrationWarning>
             <body className={`${spaceGrotesk.variable} ${dmMono.variable} font-body antialiased`}>
                 <Navbar />
-                <main className="pt-14">{children}</main>
+                <main className="pt-[var(--navbar-height)]">{children}</main>
                 <Footer />
                 <Toaster richColors position="bottom-right" closeButton />
                 <SpeedInsights />
