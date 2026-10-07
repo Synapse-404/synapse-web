@@ -19,7 +19,7 @@
         "featured": true
     },
     {
-        "id": "6",
+        "id": "2",
         "name": "Luis Delascar Valencia Mena",
         "role": "Docente lider",
         "group": "docente",
@@ -38,7 +38,7 @@
         "featured": true
     },
     {
-        "id": "2",
+        "id": "3",
         "name": "Laura Daniela Blandon Cordoba",
         "role": "Líder de investigación",
         "group": "investigación",
@@ -57,7 +57,7 @@
         "featured": true
     },
     {
-        "id": "3",
+        "id": "4",
         "name": "Josser Cordoba Rivas",
         "role": "Líder de desarrollo",
         "group": "desarrollo",
@@ -76,7 +76,7 @@
         "featured": true
     },
     {
-        "id": "4",
+        "id": "5",
         "name": "Osfary Yiseth Salcedo Palacios",
         "role": "Líder de documentación",
         "group": "documentación",
@@ -94,7 +94,7 @@
         "featured": false
     },
     {
-        "id": "5",
+        "id": "6",
         "name": "Juan Sebastian Rada Salcedo",
         "role": "Coordinación operativa y seguimiento",
         "group": "coordinación",
@@ -111,7 +111,7 @@
         "featured": false
     },
     {
-        "id": "6",
+        "id": "7",
         "name": "Deiner David Bello Gonzalez",
         "role": "Co-Líder de desarrollo",
         "group": "desarrollo",
@@ -127,7 +127,7 @@
         "featured": true
     },
     {
-        "id": "7",
+        "id": "8",
         "name": "Adrian Stiven Murillo Palacios",
         "role": "Desarrollador",
         "group": "desarrollo",
@@ -143,7 +143,7 @@
         "featured": true
     },
     {
-        "id": "8",
+        "id": "9",
         "name": "Yeison Yair Ibarguen Perea",
         "role": "Desarrollador",
         "group": "desarrollo",
@@ -159,7 +159,7 @@
         "featured": true
     },
     {
-        "id": "9",
+        "id": "10",
         "name": "Glenfor Stywar Mosquera Rovira",
         "role": "Documentador",
         "group": "documentación",
@@ -175,7 +175,7 @@
         "featured": true
     },
     {
-        "id": "10",
+        "id": "11",
         "name": "Elsa Mery Palacios Salinas",
         "role": "Investigadora",
         "group": "investigación",
@@ -191,7 +191,7 @@
         "featured": true
     },
     {
-        "id": "11",
+        "id": "12",
         "name": "Alvaro Chaverra Palacios",
         "role": "Documentador",
         "group": "documentación",
@@ -207,7 +207,7 @@
         "featured": true
     },
     {
-        "id": "12",
+        "id": "13",
         "name": "Gisella Asprilla Palomeque",
         "role": "Documentadora",
         "group": "documentación",
@@ -223,7 +223,7 @@
         "featured": true
     },
     {
-        "id": "13",
+        "id": "14",
         "name": "Kenneth Ranses Arriaga Wnfried",
         "role": "Investigador",
         "group": "investigación",
