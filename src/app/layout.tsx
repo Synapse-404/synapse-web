@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
+import "@/styles/tunnel.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const dmMono = DM_Mono({ weight: ["400", "500"], subsets: ["latin"], variable: "--font-dm", display: "swap" });

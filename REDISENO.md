@@ -55,3 +55,18 @@ No se pudo ejecutar `pnpm build` en este entorno porque las dependencias del pro
 - La composición del header conserva el icono y la tipografía propios de SYNAPSE. El descriptor «SEMILLERO DE INVESTIGACIÓN» se renderiza debajo, como texto accesible.
 - Se ajustaron las medidas para 320 px, 375 px, tablets y escritorio, con `object-fit: contain` y tamaños diferenciados por breakpoint.
 - Se cambiaron los nombres de archivo para evitar confusiones con versiones anteriores almacenadas en caché.
+
+
+## Túnel 3D inmersivo — nueva integración (2026-10-08)
+
+- Componente: `src/components/TunnelJourney.tsx`.
+- Animación autónoma Three.js r0.143.0: `public/tunnel/index.html`.
+- Estilos: `src/styles/tunnel.css`.
+- Insertado **entre Nuestra identidad y Proyectos** para conservar portada con video, páginas internas, proyectos, publicaciones, bitácora, equipo y formulario.
+- El recorrido de 4 capítulos usa el scroll local de la sección; no interfiere con la navegación del documento ni añade una segunda barra de desplazamiento.
+- El iframe usa `pointer-events: none`; el cursor del documento y la progresión se transmiten vía `postMessage` verificando origen.
+- Carga diferida cuando el usuario se aproxima, pausa fuera de pantalla y en pestañas ocultas, evita ejecutar WebGL si `prefers-reduced-motion: reduce` y tiene respaldo CSS ante errores/corte de CDN.
+- Los shaders, puntos, bloom y parámetros originales del brief se conservaron; la resolución de render se limita en dispositivos móviles para evitar consumo excesivo de GPU. Los colores del túnel mantienen el cian y violeta originales; la capa editorial utiliza el ámbar de SYNAPSE.
+- **Conectividad**: la escena se sirve en HTML local, pero sus módulos Three.js se obtienen de `unpkg.com` mediante importmap. Para despliegues sin acceso a internet se recomienda empaquetar esas dependencias localmente.
+- Para visualizar la animación aislada: `/tunnel/index.html` (también funciona con scroll propio).
+- Conventional Commit: `feat(ui): integrar túnel 3D inmersivo con recorrido interactivo en SYNAPSE`.

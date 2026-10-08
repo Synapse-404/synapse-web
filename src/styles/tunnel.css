@@ -1,0 +1,43 @@
+/* Immersive editorial bridge between the identity and project sections. */
+.tunnel-journey{position:relative;height:560svh;background:#0a0524;color:#fff;isolation:isolate}
+.tunnel-sticky{position:sticky;top:0;height:100svh;min-height:490px;overflow:hidden;background:radial-gradient(ellipse at 55% 45%,#14224b 0%,#100a30 36%,#0a0524 76%)}
+.tunnel-frame{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;pointer-events:none;z-index:1}
+.tunnel-scene-fallback{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 63% 54%,#2b4d75 0%,#12113a 22%,#080421 55%,#050315 100%);z-index:0}
+.tunnel-scene-fallback:before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 90deg at 60% 50%,transparent 0deg,#28194a 75deg,transparent 125deg,#056077 230deg,transparent 330deg);opacity:.65;filter:blur(40px)}
+.tunnel-scene-fallback span{position:absolute;left:55%;top:54%;border:1px solid rgba(73,224,251,.22);border-radius:50%;transform:translate(-50%,-50%) rotate(-22deg) scaleX(1.45)}
+.tunnel-scene-fallback span:nth-child(1){width:28vw;height:28vw;box-shadow:0 0 80px rgba(65,181,232,.07)}
+.tunnel-scene-fallback span:nth-child(2){width:47vw;height:47vw;border-color:rgba(115,88,240,.18)}
+.tunnel-scene-fallback span:nth-child(3){width:75vw;height:75vw;border-color:rgba(63,212,245,.07)}
+.tunnel-vignette{position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,3,19,.82),rgba(5,3,19,.32) 40%,transparent 75%),linear-gradient(180deg,rgba(5,3,19,.47),transparent 25%,transparent 70%,rgba(5,3,19,.69)),radial-gradient(ellipse at center,transparent 30%,rgba(5,3,19,.45) 100%)}
+.tunnel-ui{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:space-between;width:100%;height:100%;padding-top:clamp(126px,12vh,168px);padding-bottom:clamp(40px,5vh,60px);pointer-events:none}
+.tunnel-ui a{pointer-events:auto}
+.tunnel-topline{display:flex;align-items:center;justify-content:space-between;gap:20px;font:500 10px/1.5 var(--font-dm),monospace;letter-spacing:.13em;color:rgba(255,255,255,.68)}
+.tunnel-kicker{display:flex;align-items:center;gap:13px}
+.tunnel-signal{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 5px rgba(245,168,0,.13),0 0 22px rgba(245,168,0,.6)}
+.tunnel-coordinates{color:rgba(255,255,255,.43)}
+.tunnel-story{max-width:min(780px,75%);animation:tunnel-story-in .6s cubic-bezier(.19,1,.22,1) both}
+.tunnel-chapter-num{display:inline-flex;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.34);min-width:180px;color:var(--amber);font:500 11px var(--font-dm),monospace;letter-spacing:.14em}
+.tunnel-story h2{font-size:clamp(56px,7.25vw,116px);font-weight:440;line-height:.98;letter-spacing:-.08em;margin:25px 0 25px;text-wrap:balance;text-shadow:0 2px 40px rgba(0,0,0,.28)}
+.tunnel-story h2 em{color:var(--amber);font-style:normal}
+.tunnel-story p{max-width:385px;color:rgba(255,255,255,.78);font-size:clamp(14px,1.2vw,17px);line-height:1.65;margin:0}
+.tunnel-story-tag{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font:500 10px var(--font-dm),monospace;letter-spacing:.09em;color:rgba(255,255,255,.48)}
+.tunnel-story-tag:before{content:"";width:21px;height:1px;background:var(--amber)}
+.tunnel-bottomline{display:flex;justify-content:space-between;align-items:center;gap:25px;padding-top:19px;border-top:1px solid rgba(255,255,255,.23);font:500 10px/1.5 var(--font-dm),monospace;letter-spacing:.1em}
+.tunnel-bottom-left{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.65)}
+.tunnel-wheel{height:28px;width:18px;border:1px solid rgba(255,255,255,.56);border-radius:12px;display:flex;justify-content:center;padding-top:6px}
+.tunnel-wheel span{display:block;width:2px;height:7px;border-radius:2px;background:var(--amber);animation:tunnel-scroll-hint 1.5s infinite}
+.tunnel-chapter-dots{display:flex;align-items:center;gap:8px}
+.tunnel-chapter-dots span{width:20px;height:2px;background:rgba(255,255,255,.25);transition:background .3s,width .3s}
+.tunnel-chapter-dots span.is-current{background:var(--amber);width:37px}
+.tunnel-exit-link{display:flex;align-items:center;gap:25px;border:1px solid rgba(255,255,255,.40);padding:13px 18px;border-radius:90px;white-space:nowrap;color:white;transition:background .2s,border .2s,color .2s}
+.tunnel-exit-link:hover{background:var(--amber);border-color:var(--amber);color:#111}
+.tunnel-exit-link span{font-size:19px;line-height:1}
+.tunnel-vertical-label{position:absolute;z-index:3;right:20px;top:50%;writing-mode:vertical-rl;transform:translateY(-50%);font:500 9px var(--font-dm),monospace;letter-spacing:.3em;color:rgba(255,255,255,.4);pointer-events:none}
+.tunnel-progress-track{position:absolute;z-index:5;left:0;top:0;width:3px;height:100%;background:rgba(255,255,255,.09);pointer-events:none}
+.tunnel-progress-track span{position:absolute;left:0;top:0;width:100%;height:var(--tunnel-progress,0%);background:var(--amber);box-shadow:0 0 15px rgba(245,168,0,.6)}
+@keyframes tunnel-story-in{from{opacity:0;transform:translateY(22px);filter:blur(7px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes tunnel-scroll-hint{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(5px);opacity:.4}}
+@media(max-width:900px){.tunnel-ui{padding-top:130px}.tunnel-story{max-width:80%}.tunnel-story h2{font-size:clamp(53px,8vw,79px)}.tunnel-coordinates,.tunnel-vertical-label{display:none}}
+@media(max-width:690px){.tunnel-journey{height:440svh}.tunnel-sticky{min-height:470px}.tunnel-ui{padding-top:120px;padding-bottom:32px}.tunnel-vignette{background:linear-gradient(90deg,rgba(5,3,19,.72),rgba(5,3,19,.12) 85%),linear-gradient(180deg,rgba(5,3,19,.45),transparent 27%,rgba(5,3,19,.18) 57%,rgba(5,3,19,.76)),radial-gradient(ellipse at center,transparent 10%,rgba(5,3,19,.36) 100%)}.tunnel-topline{font-size:9px}.tunnel-story{max-width:100%}.tunnel-story h2{font-size:clamp(49px,11vw,74px);line-height:1.03;margin:20px 0}.tunnel-story p{font-size:14px;max-width:330px}.tunnel-story-tag{font-size:9px;margin-top:22px}.tunnel-bottomline{flex-wrap:wrap;justify-content:space-between;gap:16px}.tunnel-bottom-left{width:100%;font-size:9px}.tunnel-chapter-dots span{width:15px}.tunnel-chapter-dots span.is-current{width:28px}.tunnel-exit-link{padding:12px 16px;font-size:9px;gap:10px}}
+@media(max-width:390px){.tunnel-ui{padding-top:115px}.tunnel-story h2{font-size:45px}.tunnel-chapter-num{font-size:9px}.tunnel-story p{font-size:13px}.tunnel-bottom-left{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.tunnel-journey{height:100svh;min-height:580px}.tunnel-story{animation:none}.tunnel-wheel span{animation:none}}

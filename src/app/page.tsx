@@ -8,6 +8,7 @@ import ProjectCard from "@/components/ProjectCard";
 import PublicationCard from "@/components/PublicationCard";
 import BlogCard from "@/components/BlogCard";
 import TeamCard from "@/components/TeamCard";
+import TunnelJourney from "@/components/TunnelJourney";
 import type { Project, Publication, BlogPost } from "@/types";
 import projectsData from "@/data/projects.json";
 import publicationsData from "@/data/publications.json";
@@ -95,6 +96,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <TunnelJourney />
 
       <section id="proyectos" className="section-space projects-section">
         <div className="content-width">
