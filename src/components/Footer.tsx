@@ -1,21 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
-    return (
-        <footer className="bg-synapse-black py-12 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/5">
-            <Link href="/">
-                <Image src="/Recurso9.png" alt="SYNAPSE Logo" width={60} height={60} className="h-auto w-full object-contain" />
-            </Link>
-            <div className="font-mono text-[11.5px] text-white/75 text-center md:text-right leading-loose">
-                Semillero de Investigación — Uniclaretiana
-                <br />
-                Quibdó, Chocó · Colombia
-                <br />
-                Investiga · Desarrolla · Impacta
-            </div>
-        </footer>
-    );
-};
-
-export default Footer;
+export default function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-top content-width">
+        <div>
+          <p className="eyebrow footer-eyebrow"><span className="eyebrow-dot" /> DESDE QUIBDÓ, CHOCÓ</p>
+          <h2>Las ideas cambian<br /><span>realidades.</span></h2>
+          <Link className="footer-action" href="/#contacto">Hagamos parte del cambio <span aria-hidden="true">↗</span></Link>
+        </div>
+        <div className="footer-right">
+          <p>Un espacio para investigar, crear tecnología y generar conocimiento que aporte al territorio.</p>
+          <div className="footer-links">
+            <div><span>EXPLORA</span><Link href="/proyectos">Proyectos</Link><Link href="/publicaciones">Publicaciones</Link><Link href="/equipo">Equipo</Link><Link href="/blog">Bitácora</Link></div>
+            <div><span>ENCUÉNTRANOS</span><a href="https://github.com/Synapse-404" rel="noopener noreferrer" target="_blank">GitHub ↗</a><Link href="/#identidad">Nuestra historia</Link><Link href="/#contacto">Vinculación</Link></div>
+          </div>
+        </div>
+      </div>
+      <div className="footer-bottom content-width">
+        <Link href="/" aria-label="Volver al inicio"><Image src="/synapse-wordmark.png" width={680} height={165} alt="SYNAPSE" className="footer-logo" /></Link>
+        <span>SEMILLERO DE INVESTIGACIÓN · UNICLARETIANA</span>
+        <span>QUIBDÓ, CHOCÓ · COLOMBIA</span>
+        <Link href="#contenido">VOLVER ARRIBA ↑</Link>
+      </div>
+    </footer>
+  );
+}

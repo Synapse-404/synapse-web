@@ -1,94 +1,18 @@
 import TeamCard from "@/components/TeamCard";
-import { team } from "@/lib/team";
-import { TeamMember } from "@/types";
+import {team} from "@/lib/team";
+import type { TeamMember } from "@/types";
 
-const groupOrder: Array<NonNullable<TeamMember["group"]>> = [
-    "docente",
-    "coordinación",
-    "investigación",
-    "desarrollo",
-    "documentación",
-];
-
-const groupLabels: Record<NonNullable<TeamMember["group"]>, { title: string; description: string }> = {
-    docente: {
-        title: "Docentes líderes",
-        description: "Orientan la ruta académica, metodológica e institucional del semillero.",
-    },
-    coordinación: {
-        title: "Coordinación operativa",
-        description: "Fiscaliza compromisos, consolida avances y conecta a los líderes de grupo con los docentes líderes del semillero.",
-    },
-    investigación: {
-        title: "Grupo de investigación",
-        description: "Formula metodologías, analiza datos y produce conocimiento académico.",
-    },
-    desarrollo: {
-        title: "Grupo de desarrollo",
-        description: "Construye prototipos, plataformas, tableros y soluciones de software.",
-    },
-    documentación: {
-        title: "Grupo de documentación",
-        description: "Sistematiza avances, evidencias, bitácoras, informes y entregables.",
-    },
+const groupOrder: Array<NonNullable<TeamMember["group"]>> = ["docente", "coordinación", "investigación", "desarrollo", "documentación"];
+const groupLabels: Record<NonNullable<TeamMember["group"]>,{title:string; description:string}> = {
+  docente:{title:"Docentes líderes",description:"Orientan el enfoque académico, metodológico e institucional del semillero."},
+  coordinación:{title:"Coordinación operativa",description:"Articula el seguimiento a proyectos, compromisos y grupos de trabajo."},
+  investigación:{title:"Investigación",description:"Construye preguntas, desarrolla metodologías, analiza datos y genera conocimiento."},
+  desarrollo:{title:"Desarrollo",description:"Transforma ideas en prototipos, plataformas y soluciones de software."},
+  documentación:{title:"Documentación",description:"Conserva evidencias, bitácoras y productos derivados del trabajo colaborativo."},
 };
-
-export const metadata = {
-    title: "Equipo | SYNAPSE",
-    description: "Integrantes y estructura de trabajo del semillero de investigación SYNAPSE.",
-};
-
-export default function TeamPage() {
-    return (
-        <section className="bg-white py-20">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="mb-12 max-w-3xl">
-                    <span className="font-mono text-xs tracking-wider text-synapse-yellow">Estructura del semillero</span>
-                    <h1 className="mt-3 font-display text-4xl text-synapse-black md:text-5xl">
-                        Equipo organizado por <span className="text-synapse-yellow">grupos de trabajo</span>
-                    </h1>
-                    <p className="mt-5 text-gray-600">
-                        SYNAPSE articula sus actividades en grupos de investigación, desarrollo y documentación, con una coordinación operativa encargada de hacer seguimiento a compromisos y mantener comunicación directa con los líderes y los docentes líderes.
-                    </p>
-                </div>
-
-                <div className="mb-12 grid gap-4 md:grid-cols-3">
-                    <div className="bg-synapse-black p-5 text-white">
-                        <p className="font-display text-3xl text-synapse-yellow">{team.length}</p>
-                        <p className="font-mono text-xs text-white/60">Integrantes</p>
-                    </div>
-                    <div className="bg-synapse-black p-5 text-white">
-                        <p className="font-display text-3xl text-synapse-yellow">3</p>
-                        <p className="font-mono text-xs text-white/60">Grupos base</p>
-                    </div>
-                    <div className="bg-synapse-black p-5 text-white">
-                        <p className="font-display text-3xl text-synapse-yellow">1</p>
-                        <p className="font-mono text-xs text-white/60">Enlace operativo</p>
-                    </div>
-                </div>
-
-                <div className="space-y-14">
-                    {groupOrder.map((group) => {
-                        const members = team.filter((member) => member.group === group);
-                        if (members.length === 0) return null;
-
-                        return (
-                            <section key={group} className="border-t border-gray-100 pt-10">
-                                <div className="mb-6 max-w-2xl">
-                                    <span className="font-mono text-xs uppercase tracking-wide text-synapse-yellow">{group}</span>
-                                    <h2 className="mt-2 font-display text-3xl text-synapse-black">{groupLabels[group].title}</h2>
-                                    <p className="mt-3 text-sm text-gray-600">{groupLabels[group].description}</p>
-                                </div>
-                                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                    {members.map((member) => (
-                                        <TeamCard key={member.id} member={member} />
-                                    ))}
-                                </div>
-                            </section>
-                        );
-                    })}
-                </div>
-            </div>
-        </section>
-    );
-}
+export const metadata={title:"Equipo",description:"Conoce a las personas y los grupos de trabajo del semillero SYNAPSE."};
+export default function TeamPage(){return <div className="inner-page"><div className="content-width">
+  <header className="inner-hero"><p className="eyebrow"><span className="eyebrow-dot"/> EQUIPO / COMUNIDAD</p><h1>El talento que mueve<br /><em>las ideas.</em></h1><p>Investigadores, desarrolladores y gestores que comparten un compromiso: hacer que el conocimiento tenga impacto desde el Chocó.</p></header>
+  <div className="inner-metrics"><div className="inner-metric"><strong>{String(team.length).padStart(2,"0")}</strong><span>Integrantes</span></div><div className="inner-metric"><strong>03</strong><span>Grupos base</span></div><div className="inner-metric"><strong>01</strong><span>Coordinación operativa</span></div></div>
+  <div className="inner-groups">{groupOrder.map(group=>{const members=team.filter(m=>m.group===group);if(!members.length)return null;return <section className="inner-group" key={group}><header><p className="eyebrow"><span className="eyebrow-dot"/>{group.toUpperCase()}</p><h2>{groupLabels[group].title}</h2><p>{groupLabels[group].description}</p></header><div className="team-grid">{members.map(m=><TeamCard member={m} key={m.id}/>)}</div></section>})}</div>
+</div></div>}

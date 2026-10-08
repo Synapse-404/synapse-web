@@ -1,51 +1,15 @@
 import ProjectCard from "@/components/ProjectCard";
 import projectsData from "@/data/projects.json";
-import { Project } from "@/types";
+import type { Project } from "@/types";
 
 const projects = projectsData as Project[];
-
-export const metadata = {
-    title: "Proyectos | SYNAPSE",
-    description: "Proyectos en desarrollo del semillero de investigación SYNAPSE.",
-};
+export const metadata = { title: "Proyectos", description: "Proyectos de investigación aplicada, datos, inteligencia artificial y desarrollo de software de SYNAPSE." };
 
 export default function ProjectsPage() {
-    const activeProjects = projects.filter((project) => project.status === "activo").length;
-
-    return (
-        <section className="bg-gray-50 py-20">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="mb-12 max-w-3xl">
-                    <span className="font-mono text-xs tracking-wider text-synapse-yellow">Proyectos en desarrollo</span>
-                    <h1 className="mt-3 font-display text-4xl text-synapse-black md:text-5xl">
-                        Soluciones con enfoque en <span className="text-synapse-yellow">Quibdó, Chocó</span>
-                    </h1>
-                    <p className="mt-5 text-gray-600">
-                        Iniciativas de investigación aplicada, desarrollo de software, inteligencia artificial y datos para responder a necesidades educativas, sociales y ambientales del territorio.
-                    </p>
-                </div>
-
-                <div className="mb-10 grid gap-4 sm:grid-cols-3">
-                    <div className="bg-synapse-black p-5 text-white">
-                        <p className="font-display text-3xl text-synapse-yellow">{projects.length}</p>
-                        <p className="font-mono text-xs text-white/60">Proyectos registrados</p>
-                    </div>
-                    <div className="bg-synapse-black p-5 text-white">
-                        <p className="font-display text-3xl text-synapse-yellow">{activeProjects}</p>
-                        <p className="font-mono text-xs text-white/60">En desarrollo</p>
-                    </div>
-                    <div className="bg-synapse-black p-5 text-white">
-                        <p className="font-display text-3xl text-synapse-yellow">{projects.filter((project) => project.status === "finalizado").length}</p>
-                        <p className="font-mono text-xs text-white/60">Proyectos finalizados</p>
-                    </div>
-                </div>
-
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {projects.map((project) => (
-                        <ProjectCard key={project.id} project={project} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  const active = projects.filter(p => p.status === "activo").length;
+  return <div className="inner-page"><div className="content-width">
+    <header className="inner-hero"><p className="eyebrow"><span className="eyebrow-dot"/> PROYECTOS / INVESTIGACIÓN APLICADA</p><h1>Ideas con los pies<br /><em>en el territorio.</em></h1><p>Diseñamos soluciones desde Quibdó que usan tecnología, datos e inteligencia artificial para abordar desafíos reales del Chocó.</p></header>
+    <div className="inner-metrics"><div className="inner-metric"><strong>{String(projects.length).padStart(2, "0")}</strong><span>Proyectos registrados</span></div><div className="inner-metric"><strong>{String(active).padStart(2, "0")}</strong><span>En desarrollo</span></div><div className="inner-metric"><strong>{String(projects.length - active).padStart(2, "0")}</strong><span>Finalizados</span></div></div>
+    <div className="projects-grid">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index}/>)}</div>
+  </div></div>;
 }

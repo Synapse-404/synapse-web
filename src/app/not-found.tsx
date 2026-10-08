@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound(){return <section className="inner-page"><div className="content-width"><div className="inner-hero"><p className="eyebrow"><span className="eyebrow-dot"/> ERROR / 404</p><h1>Esta ruta aún<br /><em>no existe.</em></h1><p>Parece que llegaste a un lugar fuera de nuestro mapa. Volvamos a explorar las ideas que sí están en marcha.</p></div><Link href="/" className="detail-external">Volver al inicio <span aria-hidden="true">↗</span></Link></div></section>}

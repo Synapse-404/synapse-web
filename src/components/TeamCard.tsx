@@ -1,30 +1,13 @@
 import Link from "next/link";
-import { TeamMember } from "@/types";
+import type { TeamMember } from "@/types";
 import TeamAvatar from "@/components/TeamAvatar";
 import TeamSocialLinks from "@/components/TeamSocialLinks";
 
-interface Props {
-    member: TeamMember;
+export default function TeamCard({ member }: { member: TeamMember }) {
+  return (
+    <article className="team-card">
+      <div className="team-card-photo"><TeamAvatar member={member} /><span className="team-card-spark" aria-hidden="true">✳</span></div>
+      <div className="team-card-description"><span className="small-label">{member.groupRole ?? member.group ?? "INVESTIGACIÓN"}</span><h3>{member.name}</h3><p className="team-role">{member.role}</p><p className="team-bio">{member.bio}</p><TeamSocialLinks member={member} /><Link href={`/equipo/${member.id}`} className="team-profile-link">Ver perfil <span aria-hidden="true">↗</span></Link></div>
+    </article>
+  );
 }
-
-const TeamCard = ({ member }: Props) => {
-    return (
-        <div className="text-center p-6 bg-gray-50 rounded-sm border border-gray-100 hover:shadow-md transition">
-            <TeamAvatar member={member} />
-            <h3 className="font-display text-xl">{member.name}</h3>
-            <p className="text-synapse-yellow font-mono text-xs mt-1">{member.role}</p>
-            {member.groupRole && (
-                <p className="mt-2 inline-block bg-synapse-black px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-white">
-                    {member.groupRole}
-                </p>
-            )}
-            <p className="text-gray-500 text-sm mt-3">{member.bio}</p>
-            <TeamSocialLinks member={member} />
-            <Link href={`/equipo/${member.id}`} className="inline-block mt-3 font-mono text-xs text-synapse-yellow border-b border-synapse-yellow/50">
-                Ver perfil →
-            </Link>
-        </div>
-    );
-};
-
-export default TeamCard;
