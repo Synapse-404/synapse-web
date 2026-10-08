@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { createSeoMetadata, defaultDescription, siteUrl } from "@/lib/seo";
 import "@/styles/globals.css";
 import "@/styles/tunnel.css";
 
@@ -11,21 +12,47 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "sw
 const dmMono = DM_Mono({ weight: ["400", "500"], subsets: ["latin"], variable: "--font-dm", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "SYNAPSE — Investigación que transforma", template: "%s · SYNAPSE" },
-  description: "Semillero de investigación de Uniclaretiana en Quibdó, Chocó. Investigación, software, datos e inteligencia artificial con propósito territorial.",
-  openGraph: {
-    title: "SYNAPSE — Investigación que transforma",
-    description: "Investigamos, desarrollamos e impactamos. Tecnología con propósito desde el Chocó.",
-    images: [{ url: "/metal-human.jpg", width: 1200, height: 896, alt: "Visual tecnológico de SYNAPSE" }],
-    locale: "es_CO",
-    type: "website",
+  ...createSeoMetadata({ path: "/" }),
+  metadataBase: new URL(siteUrl),
+  title: { default: "SYNAPSE — Investigación que transforma", template: "%s | SYNAPSE" },
+  applicationName: "SYNAPSE",
+  keywords: [
+    "SYNAPSE", "semillero de investigación", "Uniclaretiana", "Fundación Universitaria Claretiana",
+    "Quibdó", "Chocó", "investigación aplicada", "inteligencia artificial",
+    "desarrollo de software", "ciencia de datos", "innovación tecnológica",
+  ],
+  authors: [{ name: "Semillero de investigación SYNAPSE" }],
+  category: "educación e investigación",
+  robots: {
+    index: process.env.VERCEL_ENV !== "preview",
+    follow: process.env.VERCEL_ENV !== "preview",
+    googleBot: { index: process.env.VERCEL_ENV !== "preview", follow: process.env.VERCEL_ENV !== "preview" },
   },
+  icons: { icon: "/favicon.ico" },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SYNAPSE",
+  alternateName: "Semillero de investigación SYNAPSE",
+  url: siteUrl,
+  logo: new URL("/synapse-brandmark-v3.png", siteUrl).toString(),
+  description: defaultDescription,
+  parentOrganization: {
+    "@type": "CollegeOrUniversity",
+    name: "Fundación Universitaria Claretiana — Uniclaretiana",
+  },
+  areaServed: { "@type": "Place", name: "Quibdó, Chocó, Colombia" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
       <body className={`${geist.variable} ${dmMono.variable}`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }} />
         <a className="skip-link" href="#contenido">Saltar al contenido</a>
         <Navbar />
         <main id="contenido">{children}</main>

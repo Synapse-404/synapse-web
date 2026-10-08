@@ -1,9 +1,10 @@
+import { createSeoMetadata } from "@/lib/seo";
 import ProjectCard from "@/components/ProjectCard";
 import projectsData from "@/data/projects.json";
 import type { Project } from "@/types";
 
 const projects = projectsData as Project[];
-export const metadata = { title: "Proyectos", description: "Proyectos de investigación aplicada, datos, inteligencia artificial y desarrollo de software de SYNAPSE." };
+export const metadata = createSeoMetadata({ title: 'Proyectos', description: 'Conoce los proyectos de investigación aplicada, inteligencia artificial, datos y desarrollo de software de SYNAPSE en el Chocó.', path: '/proyectos' });
 
 export default function ProjectsPage() {
   const active = projects.filter(p => p.status === "activo").length;

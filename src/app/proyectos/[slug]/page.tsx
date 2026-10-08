@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
+import { createSeoMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import projectsData from "@/data/projects.json";
 
 export async function generateStaticParams() { return projectsData.map(p => ({ slug: p.slug })); }
 interface Props { params: Promise<{slug: string}> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const item = projectsData.find(item => item.slug === slug);
+  if (!item) return { robots: { index: false, follow: false } };
+  return createSeoMetadata({ title: item.title, description: item.description, path: `/proyectos/${slug}`, type: "website" });
+}
 export default async function ProjectPage({params}: Props) {
   const { slug } = await params;
   const project = projectsData.find(p => p.slug === slug);

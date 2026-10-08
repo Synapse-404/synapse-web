@@ -1,3 +1,4 @@
+import { createSeoMetadata } from "@/lib/seo";
 import TeamCard from "@/components/TeamCard";
 import {team} from "@/lib/team";
 import type { TeamMember } from "@/types";
@@ -10,7 +11,7 @@ const groupLabels: Record<NonNullable<TeamMember["group"]>,{title:string; descri
   desarrollo:{title:"Desarrollo",description:"Transforma ideas en prototipos, plataformas y soluciones de software."},
   documentación:{title:"Documentación",description:"Conserva evidencias, bitácoras y productos derivados del trabajo colaborativo."},
 };
-export const metadata={title:"Equipo",description:"Conoce a las personas y los grupos de trabajo del semillero SYNAPSE."};
+export const metadata = createSeoMetadata({ title: 'Equipo', description: 'Conoce a los investigadores, estudiantes y desarrolladores que conforman el semillero SYNAPSE de Quibdó.', path: '/equipo' });
 export default function TeamPage(){return <div className="inner-page"><div className="content-width">
   <header className="inner-hero"><p className="eyebrow"><span className="eyebrow-dot"/> EQUIPO / COMUNIDAD</p><h1>El talento que mueve<br /><em>las ideas.</em></h1><p>Investigadores, desarrolladores y gestores que comparten un compromiso: hacer que el conocimiento tenga impacto desde el Chocó.</p></header>
   <div className="inner-metrics"><div className="inner-metric"><strong>{String(team.length).padStart(2,"0")}</strong><span>Integrantes</span></div><div className="inner-metric"><strong>03</strong><span>Grupos base</span></div><div className="inner-metric"><strong>01</strong><span>Coordinación operativa</span></div></div>
