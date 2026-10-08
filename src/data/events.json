@@ -1,26 +1,26 @@
 [
-    {
-        "id": "1",
-        "title": "Webinar: Introducción a la IA en contextos rurales",
-        "date": "2025-06-15",
-        "type": "online",
-        "description": "Sesión virtual abierta al público sobre aplicaciones de inteligencia artificial en comunidades rurales.",
-        "link": "https://forms.example.com/webinar-ia"
-    },
-    {
-        "id": "2",
-        "title": "Taller de prototipado IoT con Arduino",
-        "date": "2025-06-22",
-        "type": "presencial",
-        "description": "Taller práctico para construir sensores de bajo costo. Cupo limitado.",
-        "link": "https://forms.example.com/taller-iot"
-    },
-    {
-        "id": "3",
-        "title": "Hackatón de datos abiertos Chocó",
-        "date": "2025-07-10",
-        "type": "híbrido",
-        "description": "Competencia de análisis de datos con conjuntos abiertos sobre el Chocó.",
-        "link": "https://hackaton.choco.gov.co"
-    }
+  {
+    "id": "1",
+    "title": "Webinar: Introducción a la IA en contextos rurales",
+    "date": "2025-06-15",
+    "type": "online",
+    "description": "Sesión virtual abierta al público sobre aplicaciones de inteligencia artificial en comunidades rurales.",
+    "link": "#"
+  },
+  {
+    "id": "2",
+    "title": "Taller de prototipado IoT con Arduino",
+    "date": "2025-06-22",
+    "type": "presencial",
+    "description": "Taller práctico para construir sensores de bajo costo. Cupo limitado.",
+    "link": "#"
+  },
+  {
+    "id": "3",
+    "title": "Hackatón de datos abiertos Chocó",
+    "date": "2025-07-10",
+    "type": "híbrido",
+    "description": "Competencia de análisis de datos con conjuntos abiertos sobre el Chocó.",
+    "link": "#"
+  }
 ]
