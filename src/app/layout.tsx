@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, DM_Mono } from "next/font/google";
 import { Toaster } from "sonner";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SiteShell from "@/components/SiteShell";
 import { createSeoMetadata, defaultDescription, siteUrl } from "@/lib/seo";
 import "@/styles/globals.css";
 import "@/styles/tunnel.css";
+import "@/styles/admissions.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const dmMono = DM_Mono({ weight: ["400", "500"], subsets: ["latin"], variable: "--font-dm", display: "swap" });
@@ -54,11 +53,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }} />
         <a className="skip-link" href="#contenido">Saltar al contenido</a>
-        <Navbar />
-        <main id="contenido">{children}</main>
-        <Footer />
+        <SiteShell>{children}</SiteShell>
         <Toaster richColors position="bottom-right" closeButton />
-        <SpeedInsights />
       </body>
     </html>
   );

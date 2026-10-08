@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { type FormEvent } from "react";
-import { toast } from "sonner";
 import ProjectCard from "@/components/ProjectCard";
 import PublicationCard from "@/components/PublicationCard";
 import BlogCard from "@/components/BlogCard";
 import TeamCard from "@/components/TeamCard";
 import TunnelJourney from "@/components/TunnelJourney";
+import AdmissionForm from "@/components/AdmissionForm";
 import type { Project, Publication, BlogPost } from "@/types";
 import projectsData from "@/data/projects.json";
 import publicationsData from "@/data/publications.json";
@@ -28,13 +27,6 @@ const stats = [
 ];
 
 export default function Home() {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    toast.info("Formulario pendiente de activación", {
-      description: "Todavía no hay un servicio de recepción configurado. Puedes conocer al semillero a través de nuestro GitHub.",
-      duration: 6500,
-    });
-  };
 
   return (
     <>
@@ -147,7 +139,7 @@ export default function Home() {
       <section id="contacto" className="contact-section">
         <div className="content-width contact-grid">
           <div className="contact-copy"><p className="eyebrow"><span className="eyebrow-dot"/> 07 / SÚMATE A SYNAPSE</p><h2>Tu curiosidad<br />puede cambiar<br /><em>el mañana.</em></h2><p>¿Te interesa aprender, investigar y crear tecnología con propósito? Conecta tu talento con los proyectos de nuestro semillero.</p><div className="contact-pill-row"><span>APRENDE</span><span>INVESTIGA</span><span>CONSTRUYE</span></div><a href="https://github.com/Synapse-404" target="_blank" rel="noopener noreferrer" className="underlined-link">Conócenos también en GitHub <span aria-hidden="true">↗</span></a></div>
-          <div className="contact-form-wrap"><div className="contact-form-header"><span>VINCULACIÓN / 001</span><span>✳</span></div><h3>Hablemos de tus ideas.</h3><p>Déjanos tus datos para preparar una solicitud de vinculación.</p><form onSubmit={handleSubmit} className="contact-form"><label htmlFor="fullName">Nombre completo</label><input required name="fullName" id="fullName" type="text" autoComplete="name" placeholder="Tu nombre"/><label htmlFor="email">Correo electrónico institucional</label><input required name="email" id="email" type="email" autoComplete="email" placeholder="nombre@universidad.edu.co"/><div className="contact-form-half"><div><label htmlFor="program">Programa académico</label><input required name="program" id="program" type="text" placeholder="Tu carrera"/></div><div><label htmlFor="semester">Semestre actual</label><input required name="semester" id="semester" type="number" min="1" max="10" placeholder="01"/></div></div><button type="submit" className="pill-btn pill-btn-light contact-submit">Preparar solicitud <span aria-hidden="true">↗</span></button><small>El servicio de recepción de solicitudes está pendiente de configuración. Este formulario todavía no envía información.</small></form></div>
+          <div className="contact-form-wrap"><div className="contact-form-header"><span>VINCULACIÓN / 001</span><span>✳</span></div><h3>Hablemos de tus ideas.</h3><p>Completa el formulario con tu correo institucional para solicitar tu vinculación al semillero.</p><AdmissionForm /></div>
         </div>
       </section>
     </>
