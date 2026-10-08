@@ -1,20 +1,20 @@
 [
-    {
-        "id": "1",
-        "title": "Predicción de deserción universitaria usando random forest en contextos de baja densidad de datos",
-        "authors": "Rivas, A.; Mena, C.",
-        "year": 2025,
-        "type": "artículo",
-        "venue": "Revista Colombiana de Computación, 26(1), 45-58",
-        "link": "https://doi.org/10.1234/rcc.v26i1.123"
-    },
-    {
-        "id": "2",
-        "title": "AtratoAlert: sistema IoT de bajo costo para monitoreo de caudales en el río Atrato",
-        "authors": "Palacios, L.; Mosquera, J.",
-        "year": 2024,
-        "type": "software",
-        "repository": "https://github.com/synapse/atratoalert",
-        "link": "https://github.com/synapse/atratoalert"
-    }
+  {
+    "id": "1",
+    "title": "Predicción de deserción universitaria usando random forest en contextos de baja densidad de datos",
+    "authors": "Rivas, A.; Mena, C.",
+    "year": 2025,
+    "type": "artículo",
+    "venue": "Revista Colombiana de Computación, 26(1), 45-58",
+    "link": "#"
+  },
+  {
+    "id": "2",
+    "title": "AtratoAlert: sistema IoT de bajo costo para monitoreo de caudales en el río Atrato",
+    "authors": "Palacios, L.; Mosquera, J.",
+    "year": 2024,
+    "type": "software",
+    "repository": "https://github.com/synapse/atratoalert",
+    "link": "#"
+  }
 ]
