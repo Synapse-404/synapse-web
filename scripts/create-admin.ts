@@ -15,9 +15,21 @@ async function main() {
   const prisma = new PrismaClient({ adapter: new PrismaPg({ connectionString }) });
   try {
     const existing = await prisma.adminUser.findUnique({ where: { email } });
-    if (existing) throw new Error("Ya existe ese administrador. No se sobrescribirán sus credenciales.");
-    await prisma.adminUser.create({ data: { email, fullName: name, passwordHash: await hashPassword(password) } });
-    console.log(`Administrador creado correctamente: ${email}`);
+    if (existing) {
+      console.log(`Administrador ya existe (${email}). Se conserva sin modificar sus credenciales.`);
+      return;
+    }
+    try {
+      await prisma.adminUser.create({ data: { email, fullName: name, passwordHash: await hashPassword(password) } });
+      console.log(`Administrador creado correctamente: ${email}`);
+    } catch (error) {
+      // Dos despliegues simultáneos pueden competir por el primer registro.
+      if (typeof error === "object" && error !== null && "code" in error && error.code === "P2002") {
+        console.log(`Administrador ya existe (${email}). No se modifica.`);
+        return;
+      }
+      throw error;
+    }
   } finally { await prisma.$disconnect(); }
 }
 main().catch((error: unknown) => { console.error(error); process.exitCode=1; });

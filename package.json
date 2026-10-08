@@ -20,7 +20,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run db:generate && pnpm run validate:team && next build",
+    "build": "pnpm run db:generate && pnpm run validate:team && pnpm run vercel:bootstrap && next build",
     "validate:team": "node scripts/validate-team.mjs",
     "start": "next start",
     "lint": "eslint",
@@ -30,7 +30,10 @@
     "db:studio": "prisma studio",
     "admin:create": "tsx scripts/create-admin.ts",
     "test:admissions": "node --experimental-strip-types --test tests/admissions.test.mjs",
-    "test:tracking": "node --experimental-strip-types --test tests/tracking.test.mjs"
+    "test:tracking": "node --experimental-strip-types --test tests/tracking.test.mjs",
+    "vercel-build": "pnpm run build",
+    "vercel:bootstrap": "node scripts/prepare-vercel.mjs",
+    "test:deployment": "node --test tests/vercel-bootstrap.test.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
