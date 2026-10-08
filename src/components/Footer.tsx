@@ -19,7 +19,28 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom content-width">
-        <Link href="/" aria-label="Volver al inicio"><Image src="/synapse-wordmark.png" width={680} height={165} alt="SYNAPSE" className="footer-logo" /></Link>
+        <Link href="/" aria-label="Volver al inicio" className="footer-brand">
+          <Image
+            src="/synapse-brandmark-v3.png"
+            width={186}
+            height={217}
+            alt=""
+            aria-hidden="true"
+            unoptimized
+            className="footer-brand-symbol"
+          />
+          <span className="footer-brand-name">
+            <Image
+              src="/synapse-logotype-v3.png"
+              width={745}
+              height={139}
+              alt="SYNAPSE"
+              unoptimized
+              className="footer-logo"
+            />
+            <span className="footer-brand-caption">SEMILLERO DE INVESTIGACIÓN</span>
+          </span>
+        </Link>
         <span>SEMILLERO DE INVESTIGACIÓN · UNICLARETIANA</span>
         <span>QUIBDÓ, CHOCÓ · COLOMBIA</span>
         <Link href="#contenido">VOLVER ARRIBA ↑</Link>
