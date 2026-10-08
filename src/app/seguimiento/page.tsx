@@ -4,20 +4,29 @@ import TrackingLookup from "@/components/admissions/TrackingLookup";
 
 export const metadata: Metadata = {
   title: "Consulta el estado de tu admisión",
-  description: "Portal de seguimiento de admisiones al semillero de investigación SYNAPSE.",
+  description: "Consulta de forma privada y segura el estado de tu postulación al semillero SYNAPSE de Uniclaretiana.",
   robots: { index: false, follow: false, nocache: true },
   referrer: "no-referrer",
 };
 
 export default function AdmissionPortalPage() {
-  return <div className="portal-page">
-    <div className="portal-top content-width">
-      <div className="portal-breadcrumb"><Link href="/">INICIO</Link><span>/</span><span>ADMISIONES</span><span>/</span><strong>SEGUIMIENTO</strong></div>
-      <div className="portal-hero-row"><div>
-        <div className="portal-overline"><span className="portal-led" /> PORTAL DE ASPIRANTES · UNICLARETIANA</div>
-        <h1>Tu próximo paso<br /><span>comienza aquí.</span></h1>
-      </div><p>Un espacio para conocer el avance de tu postulación, revisar las etapas del proceso y consultar la decisión de admisión al semillero de investigación.</p></div>
+  return (
+    <div className="portal-page portal-v2">
+      <section className="portal-top portal-v2-intro">
+        <div className="portal-v2-ambient" aria-hidden="true"><span className="portal-v2-orbit portal-v2-orbit-one"/><span className="portal-v2-orbit portal-v2-orbit-two"/><span className="portal-v2-core">S<span>↗</span></span></div>
+        <div className="portal-v2-hero-container content-width">
+          <div className="portal-breadcrumb"><Link href="/">SYNAPSE</Link><span>/</span><strong>PORTAL DE ASPIRANTES</strong></div>
+          <div className="portal-v2-hero-copy">
+            <div className="portal-overline"><span className="portal-led"/> ESTADO ACTUALIZADO POR COORDINACIÓN</div>
+            <h1>El siguiente<br/>paso es <em>tuyo.</em></h1>
+            <p>Consulta en un solo lugar el estado de tu solicitud para formar parte del semillero de investigación SYNAPSE.</p>
+            <a href="#consultar-estado" className="portal-v2-hero-link">Consultar mi estado <span aria-hidden="true">↘</span></a>
+            <small className="portal-v2-disclaimer">La consulta muestra el último estado registrado por coordinación.</small>
+          </div>
+          <div className="portal-v2-hero-bottom"><span>01 / REGISTRO</span><span>02 / REVISIÓN</span><span>03 / DECISIÓN</span><span>UNICLARETIANA · CHOCÓ</span></div>
+        </div>
+      </section>
+      <TrackingLookup />
     </div>
-    <TrackingLookup />
-  </div>;
+  );
 }

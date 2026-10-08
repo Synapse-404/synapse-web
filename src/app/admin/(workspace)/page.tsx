@@ -8,13 +8,17 @@ import team from "@/data/team.json";
 export const dynamic = "force-dynamic";
 export default async function DashboardPage() {
   const db = getDb();
-  const [total, pending, review, approved, recent] = await Promise.all([
-    db.admissionApplication.count(),
-    db.admissionApplication.count({ where: { status: "PENDING" } }),
-    db.admissionApplication.count({ where: { status: "IN_REVIEW" } }),
-    db.admissionApplication.count({ where: { status: "APPROVED" } }),
-    db.admissionApplication.findMany({ take: 6, orderBy: { createdAt: "desc" }, select: { id: true, fullName: true, email: true, program: true, semester: true, status: true, createdAt: true } }),
+  // Dos consultas en paralelo en lugar de cuatro COUNT individuales y el listado.
+  // No se cachean datos administrativos: cada visita obtiene valores actuales.
+  const [byStatus, recent] = await Promise.all([
+    db.admissionApplication.groupBy({ by: ["status"], _count: { _all: true } }),
+    db.admissionApplication.findMany({ take: 6, orderBy: [{ createdAt: "desc" }, { id: "desc" }], select: { id: true, fullName: true, email: true, program: true, semester: true, status: true, createdAt: true } }),
   ]);
+  const countFor = (status: string) => byStatus.find(row => row.status === status)?._count._all ?? 0;
+  const total = byStatus.reduce((sum, row) => sum + row._count._all, 0);
+  const pending = countFor("PENDING");
+  const review = countFor("IN_REVIEW");
+  const approved = countFor("APPROVED");
   const cards = [
     { label: "Postulaciones", value: total, note: "Solicitudes registradas", glyph: "↗" },
     { label: "Pendientes", value: pending, note: "Por revisar", glyph: "◷" },

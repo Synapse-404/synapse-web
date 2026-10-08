@@ -39,12 +39,16 @@ export default async function TrackingPage({ params }: { params: Promise<{ token
     history: application.history.map(event => ({ status: event.toStatus, at: event.createdAt.toISOString() })),
   };
 
-  return <div className="portal-page portal-direct">
-    <div className="portal-top content-width">
-      <div className="portal-breadcrumb"><Link href="/">INICIO</Link><span>/</span><Link href="/seguimiento">ADMISIONES</Link><span>/</span><strong>MI ESTADO</strong></div>
-      <div className="portal-hero-row"><div><span className="portal-overline"><span className="portal-led" /> CONSULTA PRIVADA</span><h1>Así va tu<br /><span>postulación.</span></h1></div><p>Consulta el resultado y los movimientos registrados por el equipo de coordinación del semillero.</p></div>
-    </div>
-    <div className="portal-content">
+  return <div className="portal-page portal-v2 portal-direct">
+    <section className="portal-top portal-v2-intro portal-v2-intro-direct">
+      <div className="portal-v2-ambient" aria-hidden="true"><span className="portal-v2-orbit portal-v2-orbit-one"/><span className="portal-v2-orbit portal-v2-orbit-two"/><span className="portal-v2-core">S<span>↗</span></span></div>
+      <div className="portal-v2-hero-container content-width">
+        <div className="portal-breadcrumb"><Link href="/">SYNAPSE</Link><span>/</span><Link href="/seguimiento">ADMISIONES</Link><span>/</span><strong>MI ESTADO</strong></div>
+        <div className="portal-v2-hero-copy"><span className="portal-overline"><span className="portal-led" /> CONSULTA PRIVADA</span><h1>Así va tu<br /><em>postulación.</em></h1><p>Consulta la decisión y cada movimiento registrado por el equipo de coordinación del semillero.</p></div>
+        <div className="portal-v2-hero-bottom"><span>ESTADO ACTUAL</span><span>HISTORIAL</span><span>UNICLARETIANA · CHOCÓ</span></div>
+      </div>
+    </section>
+    <div className="portal-content portal-v2-body">
       <div className="portal-result-actions"><Link className="portal-back" href="/seguimiento">← Ir al portal de admisiones</Link><span>ENLACE DE ACCESO PRIVADO</span></div>
       <AdmissionProgress application={result}/>
       <div className="portal-private-warning">Conserva esta dirección en privado. Cualquier persona que posea el enlace puede consultar esta postulación. Para mayor privacidad, usa el portal con correo y código.</div>

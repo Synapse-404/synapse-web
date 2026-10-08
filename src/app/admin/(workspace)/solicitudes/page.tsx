@@ -18,7 +18,7 @@ export default async function ApplicationsPage({ searchParams }: { searchParams:
   };
   const db = getDb();
   const [rows, total] = await Promise.all([
-    db.admissionApplication.findMany({ where, orderBy: { createdAt: "desc" }, skip: (page-1)*PAGE_SIZE, take: PAGE_SIZE, select: { id: true, fullName: true, email: true, program: true, semester: true, status: true, createdAt: true } }),
+    db.admissionApplication.findMany({ where, orderBy: [{ createdAt: "desc" }, { id: "desc" }], skip: (page-1)*PAGE_SIZE, take: PAGE_SIZE, select: { id: true, fullName: true, email: true, program: true, semester: true, status: true, createdAt: true } }),
     db.admissionApplication.count({ where }),
   ]);
   const pageLink = (num: number) => `/admin/solicitudes?${new URLSearchParams({ ...(status ? { estado: status }:{}), ...(q ? { q }:{}), pagina: String(num) }).toString()}`;

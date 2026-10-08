@@ -2,6 +2,7 @@ import "server-only";
 import { randomBytes } from "node:crypto";
 import { hashToken } from "@/lib/security/tokens";
 import { cookies } from "next/headers";
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { getDb } from "@/lib/db";
 
@@ -11,7 +12,6 @@ export const SESSION_SECONDS = 60 * 60 * 24 * 7;
 export async function createAdminSession(adminId: string) {
   const token = randomBytes(32).toString("base64url");
   const db = getDb();
-  await db.adminSession.deleteMany({ where: { expiresAt: { lt: new Date() } } });
   await db.adminSession.create({ data: { adminId, tokenHash: hashToken(token), expiresAt: new Date(Date.now() + SESSION_SECONDS * 1000) } });
   return token;
 }
@@ -21,7 +21,7 @@ export const sessionCookieOptions = {
   path: "/", maxAge: SESSION_SECONDS,
 };
 
-export async function getAdmin() {
+export const getAdmin = cache(async function getAdmin() {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
   if (!token || token.length > 100) return null;
   const session = await getDb().adminSession.findUnique({
@@ -30,7 +30,7 @@ export async function getAdmin() {
   });
   if (!session || session.expiresAt <= new Date() || !session.admin.isActive) return null;
   return session.admin;
-}
+});
 
 export async function requireAdmin() {
   const user = await getAdmin();
