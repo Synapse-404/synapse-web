@@ -20,15 +20,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run validate:team && next build",
+    "build": "pnpm run db:generate && pnpm run validate:team && next build",
     "validate:team": "node scripts/validate-team.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "admin:create": "tsx scripts/create-admin.ts",
+    "test:admissions": "node --experimental-strip-types --test tests/admissions.test.mjs"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "@vercel/speed-insights": "^2.0.0",
     "autoprefixer": "^10.5.0",
+    "dotenv": "^18.0.6",
     "next": "16.2.7",
+    "pg": "^8.23.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sonner": "^2.0.7"
@@ -36,12 +46,15 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "prisma": "^7.10.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AdmissionStatus {
+  PENDING
+  IN_REVIEW
+  APPROVED
+  REJECTED
+}
+
+model AdmissionApplication {
+  id             String               @id @default(uuid()) @db.Uuid
+  fullName       String               @db.VarChar(120)
+  email          String               @unique @db.VarChar(254)
+  program        String               @db.VarChar(120)
+  semester       Int
+  status         AdmissionStatus      @default(PENDING)
+  trackingHash   String               @unique @db.VarChar(64)
+  consentAt      DateTime
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  reviewedAt     DateTime?
+  reviewedById   String?              @db.Uuid
+  reviewedBy     AdminUser?           @relation("ReviewedApplications", fields: [reviewedById], references: [id], onDelete: SetNull)
+  history        AdmissionStatusEvent[]
+
+  @@index([status, createdAt])
+  @@index([createdAt])
+}
+
+model AdmissionStatusEvent {
+  id            String               @id @default(uuid()) @db.Uuid
+  applicationId String               @db.Uuid
+  application   AdmissionApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  fromStatus    AdmissionStatus?
+  toStatus      AdmissionStatus
+  note          String?              @db.VarChar(500)
+  actorId       String?              @db.Uuid
+  actor         AdminUser?           @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt     DateTime             @default(now())
+
+  @@index([applicationId, createdAt])
+}
+
+model AdminUser {
+  id              String                 @id @default(uuid()) @db.Uuid
+  email           String                 @unique @db.VarChar(254)
+  fullName        String                 @db.VarChar(120)
+  passwordHash    String                 @db.VarChar(255)
+  failedAttempts  Int                    @default(0)
+  lockedUntil     DateTime?
+  isActive        Boolean                @default(true)
+  createdAt       DateTime               @default(now())
+  sessions        AdminSession[]
+  reviewed        AdmissionApplication[] @relation("ReviewedApplications")
+  changes         AdmissionStatusEvent[]
+}
+
+model AdminSession {
+  id          String    @id @default(uuid()) @db.Uuid
+  tokenHash   String    @unique @db.VarChar(64)
+  adminId     String    @db.Uuid
+  admin       AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+
+  @@index([adminId])
+  @@index([expiresAt])
+}
