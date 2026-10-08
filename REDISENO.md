@@ -42,3 +42,16 @@ Las rutas y fuentes de datos JSON existentes se conservan. El proyecto continúa
 - Archivo optimizado H.264 validado (1600 × 1196, 10 segundos).
 
 No se pudo ejecutar `pnpm build` en este entorno porque las dependencias del proyecto no estaban instaladas y no había acceso a `registry.npmjs.org`.
+
+## Ajuste del logotipo en header
+
+- El encabezado emplea `public/synapse-header-logo.png`, un recurso transparente derivado del logotipo original.
+- Se adaptaron los trazos negros del símbolo a marfil para asegurar contraste sobre el fondo oscuro; los colores de acento originales permanecen.
+- Se incrementó su tamaño y se ajustaron los puntos de ruptura para escritorio, tablet y móvil.
+
+## Ajuste definitivo del logotipo del header
+
+- Se sustituyó el uso del logotipo apilado en el header por dos recursos horizontales independientes: `public/synapse-brandmark-v3.png` y `public/synapse-logotype-v3.png`.
+- La composición del header conserva el icono y la tipografía propios de SYNAPSE. El descriptor «SEMILLERO DE INVESTIGACIÓN» se renderiza debajo, como texto accesible.
+- Se ajustaron las medidas para 320 px, 375 px, tablets y escritorio, con `object-fit: contain` y tamaños diferenciados por breakpoint.
+- Se cambiaron los nombres de archivo para evitar confusiones con versiones anteriores almacenadas en caché.

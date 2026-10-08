@@ -21,9 +21,28 @@ export default function Navbar() {
     <header className="site-header">
       <nav aria-label="Navegación principal" className="site-nav">
         <Link className="nav-brand" href="/" onClick={() => setOpen(false)} aria-label="SYNAPSE — inicio">
-          <Image src="/synapse-wordmark.png" width={680} height={165} alt="SYNAPSE" priority className="nav-logo" />
-          <span className="nav-brand-divider" aria-hidden="true" />
-          <span className="nav-brand-label">SEMILLERO DE INVESTIGACIÓN</span>
+          <Image
+            src="/synapse-brandmark-v3.png"
+            width={186}
+            height={217}
+            alt=""
+            aria-hidden="true"
+            priority
+            unoptimized
+            className="nav-brand-symbol"
+          />
+          <span className="nav-brand-name">
+            <Image
+              src="/synapse-logotype-v3.png"
+              width={745}
+              height={139}
+              alt="SYNAPSE"
+              priority
+              unoptimized
+              className="nav-logo"
+            />
+            <span className="nav-brand-caption">SEMILLERO DE INVESTIGACIÓN</span>
+          </span>
         </Link>
         <div className="nav-links">
           {links.map((link) => <Link key={link.href} href={link.href} className={`nav-link ${pathname === link.href ? "is-active" : ""}`}>{link.label}</Link>)}
