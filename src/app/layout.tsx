@@ -6,6 +6,7 @@ import { createSeoMetadata, defaultDescription, siteUrl } from "@/lib/seo";
 import "@/styles/globals.css";
 import "@/styles/tunnel.css";
 import "@/styles/admissions.css";
+import "@/styles/portal.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const dmMono = DM_Mono({ weight: ["400", "500"], subsets: ["latin"], variable: "--font-dm", display: "swap" });

@@ -117,3 +117,8 @@ También prueba manualmente:
 5. Navegación a `/admin` sin sesión (debe ir a login).
 
 **Nota:** este ZIP no incluye conexión PostgreSQL ni migraciones aplicadas sobre un servidor real. Ejecuta los comandos de la sección 2 antes de probar el flujo completo.
+
+
+## Actualización: portal de seguimiento
+
+Se añadió `/seguimiento` para consultar una solicitud con correo institucional y código privado. La API de consulta está en `POST /api/seguimiento/consultar`. El formulario ahora muestra el código al completar el registro. Los enlaces privados anteriores `/seguimiento/[token]` siguen funcionando. Consulta `PORTAL_SEGUIMIENTO.md` para los pasos, controles de seguridad y pruebas. Esta actualización no cambia el esquema Prisma.

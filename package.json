@@ -29,7 +29,8 @@
     "db:deploy": "prisma migrate deploy",
     "db:studio": "prisma studio",
     "admin:create": "tsx scripts/create-admin.ts",
-    "test:admissions": "node --experimental-strip-types --test tests/admissions.test.mjs"
+    "test:admissions": "node --experimental-strip-types --test tests/admissions.test.mjs",
+    "test:tracking": "node --experimental-strip-types --test tests/tracking.test.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

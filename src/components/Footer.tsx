@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="footer-right">
           <p>Un espacio para investigar, crear tecnología y generar conocimiento que aporte al territorio.</p>
           <div className="footer-links">
-            <div><span>EXPLORA</span><Link href="/proyectos">Proyectos</Link><Link href="/publicaciones">Publicaciones</Link><Link href="/equipo">Equipo</Link><Link href="/blog">Bitácora</Link></div>
+            <div><span>EXPLORA</span><Link href="/proyectos">Proyectos</Link><Link href="/publicaciones">Publicaciones</Link><Link href="/equipo">Equipo</Link><Link href="/blog">Bitácora</Link><Link href="/seguimiento">Estado de admisión</Link></div>
             <div><span>ENCUÉNTRANOS</span><a href="https://github.com/Synapse-404" rel="noopener noreferrer" target="_blank">GitHub ↗</a><Link href="/#identidad">Nuestra historia</Link><Link href="/#contacto">Vinculación</Link></div>
           </div>
         </div>

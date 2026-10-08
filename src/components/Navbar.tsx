@@ -10,6 +10,7 @@ const links = [
   { href: "/proyectos", label: "Proyectos" },
   { href: "/publicaciones", label: "Publicaciones" },
   { href: "/equipo", label: "Equipo" },
+  { href: "/seguimiento", label: "Admisiones" },
 ];
 
 export default function Navbar() {

@@ -8,6 +8,7 @@ import { EMAIL_HINT, INSTITUTION_DOMAIN } from "@/lib/admissions/validation";
 export default function AdmissionForm() {
   const [pending, setPending] = useState(false);
   const [trackingPath, setTrackingPath] = useState("");
+  const [trackingCode, setTrackingCode] = useState("");
   const [fieldError, setFieldError] = useState("");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -27,12 +28,13 @@ export default function AdmissionForm() {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName: values.get("fullName"), email, program: values.get("program"), semester: Number(values.get("semester")), consent: values.get("consent") === "on", website: values.get("website") }),
       });
-      const body: { message?: string; trackingPath?: string } = await res.json();
+      const body: { message?: string; trackingPath?: string; trackingCode?: string } = await res.json();
       if (!res.ok || !body.trackingPath) {
         setFieldError(body.message ?? "No se pudo completar el registro.");
         return;
       }
       setTrackingPath(body.trackingPath);
+      setTrackingCode(body.trackingCode ?? body.trackingPath.split("/").at(-1) ?? "");
       toast.success("Solicitud registrada", { description: "Guarda el enlace de seguimiento que aparece en el formulario." });
       form.reset();
     } catch {
@@ -44,8 +46,10 @@ export default function AdmissionForm() {
     <div className="admission-success" role="status">
       <span className="admission-success-icon" aria-hidden="true">✓</span>
       <h3>Solicitud recibida.</h3>
-      <p>Tu postulación quedó registrada. Guarda este enlace privado para consultar el estado de tu admisión; no se enviará automáticamente por correo.</p>
+      <p>Tu postulación quedó registrada. Guarda el siguiente código privado: lo necesitarás junto a tu correo institucional para entrar al portal. No se enviará automáticamente por correo.</p>
+      <div className="admission-tracking-code"><span>CÓDIGO DE SEGUIMIENTO</span><code>{trackingCode}</code><button type="button" className="admission-copy" onClick={async () => { try { await navigator.clipboard.writeText(trackingCode); toast.success("Código copiado"); } catch { toast.error("Selecciona el código para copiarlo."); } }}>Copiar código ↗</button></div>
       <Link className="pill-btn pill-btn-light" href={trackingPath}>Ver estado de mi solicitud <span aria-hidden="true">↗</span></Link>
+      <Link href="/seguimiento" className="admission-copy">Ir al portal de seguimiento ↗</Link>
       <button type="button" className="admission-copy" onClick={async () => { try { await navigator.clipboard.writeText(`${window.location.origin}${trackingPath}`); toast.success("Enlace copiado"); } catch { toast.error("Copia el enlace desde la página de seguimiento."); } }}>Copiar enlace de seguimiento ↗</button>
     </div>
   );
@@ -65,7 +69,7 @@ export default function AdmissionForm() {
       <label className="admission-consent"><input type="checkbox" name="consent" required /> <span>Autorizo que SYNAPSE trate estos datos exclusivamente para evaluar y gestionar mi solicitud de vinculación.</span></label>
       {fieldError && <p className="admission-error" role="alert">{fieldError}</p>}
       <button type="submit" disabled={pending} className="pill-btn pill-btn-light contact-submit">{pending ? "Enviando solicitud…" : "Enviar solicitud"}<span aria-hidden="true">↗</span></button>
-      <small>Tu solicitud quedará en estado <strong>Recibida</strong>. La admisión no es automática; el semillero revisará cada postulación.</small>
+      <small>Tu solicitud quedará en estado <strong>Recibida</strong>. La admisión no es automática; el semillero revisará cada postulación. <Link href="/seguimiento" className="admission-tracking-help">¿Ya te registraste? Consulta tu estado ↗</Link></small>
     </form>
   );
 }

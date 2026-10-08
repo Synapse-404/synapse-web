@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: "Tu solicitud fue registrada correctamente.",
       trackingPath: `/seguimiento/${trackingCode}`,
+      trackingCode,
     }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof SyntaxError) return NextResponse.json({ message: "JSON inválido." }, { status: 400 });
