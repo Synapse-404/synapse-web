@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { Geist, DM_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import SiteShell from "@/components/SiteShell";
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a className="skip-link" href="#contenido">Saltar al contenido</a>
         <SiteShell>{children}</SiteShell>
         <Toaster richColors position="bottom-right" closeButton />
+        <Analytics />
       </body>
     </html>
   );
