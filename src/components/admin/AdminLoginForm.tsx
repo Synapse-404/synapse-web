@@ -40,7 +40,7 @@ export default function AdminLoginForm() {
     <form onSubmit={login} className="auth-v2-form">
       <div className="auth-v2-field">
         <label htmlFor="adm-email">Correo de administrador</label>
-        <input id="adm-email" name="email" type="email" autoComplete="username" required maxLength={254} placeholder="coordinacion@miuniclaretiana.edu.co" />
+        <input id="adm-email" name="email" type="email" autoComplete="username" required maxLength={254} placeholder="coordinacion@uniclaretiana.edu.co" />
       </div>
       <div className="auth-v2-field">
         <label htmlFor="adm-password">Contraseña</label>

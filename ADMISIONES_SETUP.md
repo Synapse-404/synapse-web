@@ -47,7 +47,7 @@ Los modelos iniciales son:
 Añade **temporalmente** estas tres variables a tu `.env` local (no se incluyen contraseñas reales en el ZIP):
 
 ```dotenv
-ADMIN_BOOTSTRAP_EMAIL="coordinacion@miuniclaretiana.edu.co"
+ADMIN_BOOTSTRAP_EMAIL="coordinacion@uniclaretiana.edu.co"
 ADMIN_BOOTSTRAP_PASSWORD="REEMPLAZAR_CON_CONTRASENA_UNICA_DE_12_O_MAS_CARACTERES"
 ADMIN_BOOTSTRAP_NAME="Coordinación SYNAPSE"
 ```
@@ -86,7 +86,7 @@ pnpm dev
 ```bash
 curl -X POST http://localhost:3000/api/admisiones \
   -H 'Content-Type: application/json' \
-  -d '{"fullName":"Andrea Palacios","email":"andrea@miuniclaretiana.edu.co","program":"Ingeniería de Sistemas","semester":6,"consent":true}'
+  -d '{"fullName":"Andrea Palacios","email":"andrea@uniclaretiana.edu.co","program":"Ingeniería de Sistemas","semester":6,"consent":true}'
 ```
 
 Devuelve HTTP **201** con `{ "message": "...", "trackingPath": "/seguimiento/<token>" }`. Copia ese enlace; no se envía email automáticamente. Una dirección ya registrada devuelve **409**, y un dominio no permitido devuelve **422**.

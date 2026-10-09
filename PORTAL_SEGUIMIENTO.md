@@ -32,7 +32,7 @@ En producción usa `pnpm exec prisma migrate deploy`. **No se requiere una migra
 
 ## Flujo de uso
 
-1. Un aspirante se registra en `/#contacto` con correo `@miuniclaretiana.edu.co`.
+1. Un aspirante se registra en `/#contacto` con correo `@uniclaretiana.edu.co`.
 2. El servidor crea su solicitud en `PENDING` y devuelve un enlace privado + un código secreto aleatorio de 32 bytes (43 caracteres base64url). En BD **solo se almacena SHA-256 del código**.
 3. El formulario confirma el registro y ofrece copiar el código o el enlace. El usuario debe guardarlo: **no se envían correos automáticos** en esta fase.
 4. En `/seguimiento`, el aspirante introduce el **mismo correo institucional** y el código o enlace. El servidor verifica ambos antes de devolver datos.

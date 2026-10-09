@@ -10,7 +10,7 @@ async function main() {
   const name = process.env.ADMIN_BOOTSTRAP_NAME?.trim() || "Coordinación SYNAPSE";
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) throw new Error("DATABASE_URL no definida.");
-  if (!email || !/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@miuniclaretiana\.edu\.co$/.test(email)) throw new Error("ADMIN_BOOTSTRAP_EMAIL debe ser institucional.");
+  if (!email || !/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@uniclaretiana\.edu\.co$/.test(email)) throw new Error("ADMIN_BOOTSTRAP_EMAIL debe ser institucional.");
   if (!password || password.length < 12) throw new Error("ADMIN_BOOTSTRAP_PASSWORD debe tener al menos 12 caracteres.");
   const prisma = new PrismaClient({ adapter: new PrismaPg({ connectionString }) });
   try {

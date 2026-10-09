@@ -31,7 +31,7 @@ test("producción falla sin DATABASE_URL antes de llamar a Prisma", () => {
 });
 
 test("producción rechaza credenciales de bootstrap incompletas", () => {
-  const result = invoke({ VERCEL: "1", VERCEL_ENV: "production", DATABASE_URL: "postgresql://example", ADMIN_BOOTSTRAP_EMAIL: "admin@miuniclaretiana.edu.co" });
+  const result = invoke({ VERCEL: "1", VERCEL_ENV: "production", DATABASE_URL: "postgresql://example", ADMIN_BOOTSTRAP_EMAIL: "admin@uniclaretiana.edu.co" });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /juntas, o ninguna/);
 });
@@ -43,7 +43,7 @@ test("producción ordena migrate deploy antes de create-admin y puede omitir el 
     const calls = join(tmp, "calls.txt");
     writeFileSync(fakePnpm, `#!/bin/sh\nprintf '%s\\n' "$*" >> '${calls}'\n`);
     chmodSync(fakePnpm, 0o755);
-    let result = invoke({ VERCEL: "1", VERCEL_ENV: "production", DATABASE_URL: "postgresql://example", ADMIN_BOOTSTRAP_EMAIL: "admin@miuniclaretiana.edu.co", ADMIN_BOOTSTRAP_PASSWORD: "some-long-test-secret" }, tmp);
+    let result = invoke({ VERCEL: "1", VERCEL_ENV: "production", DATABASE_URL: "postgresql://example", ADMIN_BOOTSTRAP_EMAIL: "admin@uniclaretiana.edu.co", ADMIN_BOOTSTRAP_PASSWORD: "some-long-test-secret" }, tmp);
     assert.equal(result.status, 0, result.stderr);
     assert.deepEqual(readFileSync(calls, "utf8").trim().split("\n"), ["exec prisma migrate deploy", "exec tsx scripts/create-admin.ts"]);
 

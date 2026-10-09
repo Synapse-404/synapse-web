@@ -1,4 +1,4 @@
-export const INSTITUTION_DOMAIN = "miuniclaretiana.edu.co";
+export const INSTITUTION_DOMAIN = "uniclaretiana.edu.co";
 export const EMAIL_HINT = `nombre@${INSTITUTION_DOMAIN}`;
 
 export type AdmissionInput = {

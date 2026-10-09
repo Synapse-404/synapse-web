@@ -25,7 +25,7 @@ En **Project > Settings > Environment Variables**, configura para el entorno **P
 
 ```dotenv
 DATABASE_URL="postgresql://<usuario>:<contraseña>@<host>:5432/<db>?sslmode=require"
-ADMIN_BOOTSTRAP_EMAIL="coordinacion@miuniclaretiana.edu.co"
+ADMIN_BOOTSTRAP_EMAIL="coordinacion@uniclaretiana.edu.co"
 ADMIN_BOOTSTRAP_PASSWORD="<contraseña_larga_unica_de_al_menos_12_caracteres>"
 ADMIN_BOOTSTRAP_NAME="Coordinación SYNAPSE"
 ```
