@@ -9,7 +9,7 @@ export default function TeamAvatar({ member, size = "card" }: { member: Pick<Tea
   const initials = member.name.split(/\s+/).filter(Boolean).slice(0, 2).map(p => p[0]).join("").toUpperCase();
   return (
     <div className={`member-avatar ${size === "profile" ? "member-avatar-profile" : ""}`}>
-      {src && src !== failed ? <Image src={src} alt={`Retrato de ${member.name}`} fill sizes={size === "profile" ? "(max-width: 640px) 220px, 320px" : "(max-width: 640px) 80vw, 360px"} className="object-cover" unoptimized={src.startsWith("https://")} onError={() => setFailed(src)} /> : <span aria-label={`Iniciales de ${member.name}`}>{initials}</span>}
+      {src && src !== failed ? <Image src={src} alt={`Retrato de ${member.name}`} fill sizes={size === "profile" ? "(max-width: 640px) 100vw, (max-width: 1200px) 42vw, 550px" : "(max-width: 640px) 80vw, 360px"} className="object-cover" unoptimized={src.startsWith("https://")} onError={() => setFailed(src)} /> : <span aria-label={`Iniciales de ${member.name}`}>{initials}</span>}
     </div>
   );
 }

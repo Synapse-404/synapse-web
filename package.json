@@ -34,7 +34,9 @@
     "vercel-build": "pnpm run build",
     "vercel:bootstrap": "node scripts/prepare-vercel.mjs",
     "test:deployment": "node --test tests/vercel-bootstrap.test.mjs",
-    "test:db-pool": "node --experimental-strip-types --test tests/db-pool.test.mjs"
+    "test:db-pool": "node --experimental-strip-types --test tests/db-pool.test.mjs",
+    "test:team": "node --experimental-strip-types --test tests/team-directory.test.mjs",
+    "test:research": "node --experimental-strip-types --test tests/research-directory.test.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
