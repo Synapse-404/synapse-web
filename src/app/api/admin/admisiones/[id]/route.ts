@@ -3,6 +3,8 @@ import { getAdmin, isSameOrigin } from "@/lib/auth/session";
 import { getDb } from "@/lib/db";
 import { selectableStatuses } from "@/lib/admissions/status";
 import type { AdmissionStatus } from "@/generated/prisma/client";
+import { requireEmailConfiguration } from "@/lib/email/secrets";
+import { dispatchAdmissionNotification } from "@/lib/email/dispatch";
 
 export const runtime = "nodejs";
 
@@ -24,6 +26,11 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     return NextResponse.json({ message: "Estado no permitido." }, { status: 422 });
   if (note !== undefined && (typeof note !== "string" || note.trim().length > 500))
     return NextResponse.json({ message: "La nota no puede superar 500 caracteres." }, { status: 422 });
+  try { requireEmailConfiguration(); }
+  catch {
+    console.error("SYNAPSE: No están configuradas las notificaciones de admisión.");
+    return NextResponse.json({ message: "El envío de correos no está configurado. Contacta al administrador del sistema." }, { status: 503 });
+  }
   const db = getDb();
   try {
     const changed = await db.$transaction(async tx => {
@@ -33,13 +40,17 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
       // Compare-and-swap para evitar que dos revisores sobrescriban un cambio concurrente.
       const updated = await tx.admissionApplication.updateMany({ where: { id, status: current.status }, data: { status: status as AdmissionStatus, reviewedAt: new Date(), reviewedById: admin.id } });
       if (!updated.count) return "conflict" as const;
-      await tx.admissionStatusEvent.create({ data: { applicationId: id, fromStatus: current.status, toStatus: status as AdmissionStatus, note: typeof note === "string" ? note.trim() || null : null, actorId: admin.id } });
-      return "ok" as const;
+      const event = await tx.admissionStatusEvent.create({ data: { applicationId: id, fromStatus: current.status, toStatus: status as AdmissionStatus, note: typeof note === "string" ? note.trim() || null : null, actorId: admin.id } });
+      const notification = await tx.admissionEmailNotification.create({ data: { statusEventId: event.id } });
+      return { notificationId: notification.id } as const;
     });
     if (changed === "missing") return NextResponse.json({ message: "Solicitud inexistente." }, { status: 404 });
     if (changed === "conflict") return NextResponse.json({ message: "La solicitud cambió durante tu revisión. Recarga la página." }, { status: 409 });
     if (changed === "same") return NextResponse.json({ message: "La solicitud ya tiene ese estado." }, { status: 409 });
-    return NextResponse.json({ ok: true });
+    let delivery: "sent" | "queued" | "skipped" = "queued";
+    try { delivery = await dispatchAdmissionNotification(changed.notificationId); }
+    catch (error) { console.error("SYNAPSE: Falló el despacho inmediato del aviso de estado", error); }
+    return NextResponse.json({ ok: true, emailDelivery: delivery === "sent" ? "sent" : "queued" });
   } catch (error) {
     console.error("Error al cambiar estado de admisión", error);
     return NextResponse.json({ message: "No se pudo guardar el estado." }, { status: 500 });

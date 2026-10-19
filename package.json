@@ -36,7 +36,10 @@
     "test:deployment": "node --test tests/vercel-bootstrap.test.mjs",
     "test:db-pool": "node --experimental-strip-types --test tests/db-pool.test.mjs",
     "test:team": "node --experimental-strip-types --test tests/team-directory.test.mjs",
-    "test:research": "node --experimental-strip-types --test tests/research-directory.test.mjs"
+    "test:research": "node --experimental-strip-types --test tests/research-directory.test.mjs",
+    "test:email": "node --experimental-strip-types --test tests/email-template.test.mjs",
+    "email:preview": "node --experimental-strip-types scripts/generate-email-previews.mjs",
+    "test:admission-flow": "node --experimental-strip-types --test tests/admissions.test.mjs tests/tracking.test.mjs tests/email-template.test.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

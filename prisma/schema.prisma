@@ -43,6 +43,7 @@ model AdmissionStatusEvent {
   note          String?              @db.VarChar(500)
   actorId       String?              @db.Uuid
   actor         AdminUser?           @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  notification  AdmissionEmailNotification?
   createdAt     DateTime             @default(now())
 
   @@index([applicationId, createdAt])
@@ -72,4 +73,30 @@ model AdminSession {
 
   @@index([adminId])
   @@index([expiresAt])
+}
+
+/** Cola durable de correos; solo conserva cifrado el código privado hasta su envío. */
+enum EmailNotificationState {
+  PENDING
+  SENDING
+  SENT
+  FAILED
+}
+
+model AdmissionEmailNotification {
+  id                    String                 @id @default(uuid()) @db.Uuid
+  statusEventId         String                 @unique @db.Uuid
+  event                 AdmissionStatusEvent   @relation(fields: [statusEventId], references: [id], onDelete: Cascade)
+  encryptedTrackingCode String?                @db.VarChar(255)
+  state                 EmailNotificationState @default(PENDING)
+  attempts              Int                    @default(0)
+  nextAttemptAt         DateTime               @default(now())
+  lockedUntil           DateTime?
+  providerMessageId     String?                @db.VarChar(120)
+  lastError             String?                @db.VarChar(250)
+  createdAt             DateTime               @default(now())
+  sentAt                DateTime?
+
+  @@index([state, nextAttemptAt])
+  @@index([state, lockedUntil])
 }

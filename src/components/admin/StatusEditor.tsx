@@ -16,11 +16,11 @@ export default function StatusEditor({ id, current }: { id: string; current: Adm
     setSaving(true);
     try {
       const res = await fetch(`/api/admin/admisiones/${id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status, note }) });
-      const result: { message?: string } = await res.json();
+      const result: { message?: string; emailDelivery?: "sent" | "queued" } = await res.json();
       if (!res.ok) { toast.error(result.message ?? "No se pudo actualizar");router.refresh();return; }
-      toast.success("Estado actualizado correctamente");setNote("");router.refresh();
+      toast.success(result.emailDelivery === "sent" ? "Estado actualizado. Correo enviado al estudiante." : "Estado actualizado. Correo en cola de reintentos.");setNote("");router.refresh();
     } catch { toast.error("Error de conexión"); }
     finally { setSaving(false); }
   }
-  return <form onSubmit={submit} className="adm-status-editor"><label htmlFor="adm-select-status">Nuevo estado</label><select id="adm-select-status" value={status} onChange={e => setStatus(e.target.value as AdmissionStatus)}>{selectableStatuses.map(value => <option key={value} value={value}>{statusLabels[value]}</option>)}</select><label htmlFor="adm-review-note">Nota interna (opcional)</label><textarea id="adm-review-note" value={note} onChange={e => setNote(e.target.value)} maxLength={500} rows={4} placeholder="Observaciones de la revisión…"/><button className="adm-primary" disabled={saving || status===current}>{saving ? "Guardando…" : "Guardar decisión ↗"}</button><p>El nuevo estado aparecerá automáticamente en el enlace privado de seguimiento del aspirante.</p></form>;
+  return <form onSubmit={submit} className="adm-status-editor"><label htmlFor="adm-select-status">Nuevo estado</label><select id="adm-select-status" value={status} onChange={e => setStatus(e.target.value as AdmissionStatus)}>{selectableStatuses.map(value => <option key={value} value={value}>{statusLabels[value]}</option>)}</select><label htmlFor="adm-review-note">Nota interna (opcional)</label><textarea id="adm-review-note" value={note} onChange={e => setNote(e.target.value)} maxLength={500} rows={4} placeholder="Observaciones de la revisión…"/><button className="adm-primary" disabled={saving || status===current}>{saving ? "Guardando…" : "Guardar decisión ↗"}</button><p>Cada cambio enviará un correo al estudiante y actualizará su portal de seguimiento. Las notas son internas y nunca se incluyen en el mensaje.</p></form>;
 }

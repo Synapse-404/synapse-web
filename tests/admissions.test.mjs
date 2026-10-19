@@ -2,15 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeInstitutionEmail, validateAdmissionInput } from '../src/lib/admissions/validation.ts';
 
-const good = { fullName: 'María López', email: 'Estudiante@MIUNICLARETIANA.EDU.CO', program: 'Ingeniería de Sistemas', semester: 7, consent: true };
+const good = { fullName: 'María López', email: 'Estudiante@UNICLARETIANA.EDU.CO', program: 'Ingeniería de Sistemas', semester: 7, consent: true };
 
 test('normaliza y permite únicamente el dominio institucional exacto', () => {
-  assert.equal(normalizeInstitutionEmail(' Estudiante@MiUniclaretiana.Edu.Co '), 'estudiante@miuniclaretiana.edu.co');
+  assert.equal(normalizeInstitutionEmail(' Estudiante@Uniclaretiana.Edu.Co '), 'estudiante@uniclaretiana.edu.co');
   for (const email of [
-    'estudiante@gmail.com', 'estudiante@uniclaretiana.edu.co',
-    'estudiante@miuniclaretiana.edu.co.evil.com', 'estudiante@sub.miuniclaretiana.edu.co',
-    'estudiante@@miuniclaretiana.edu.co', '.estudiante@miuniclaretiana.edu.co',
-    'estudiante..test@miuniclaretiana.edu.co',
+    'estudiante@gmail.com', 'estudiante@miuniclaretiana.edu.co',
+    'estudiante@uniclaretiana.edu.co.evil.com', 'estudiante@sub.uniclaretiana.edu.co',
+    'estudiante@@uniclaretiana.edu.co', '.estudiante@uniclaretiana.edu.co',
+    'estudiante..test@uniclaretiana.edu.co',
   ]) assert.equal(normalizeInstitutionEmail(email), null, email);
 });
 
@@ -19,7 +19,7 @@ test('acepta postulación completa y normaliza espacios', () => {
   assert.equal(result.ok, true);
   if (result.ok) {
     assert.equal(result.data.fullName, 'María López');
-    assert.equal(result.data.email, 'estudiante@miuniclaretiana.edu.co');
+    assert.equal(result.data.email, 'estudiante@uniclaretiana.edu.co');
     assert.equal(result.data.semester, 7);
   }
 });
