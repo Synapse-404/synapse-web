@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import AdmissionProgress from "@/components/admissions/AdmissionProgress";
-import { INSTITUTION_DOMAIN } from "@/lib/admissions/validation";
+import { EMAIL_HINT, INSTITUTION_EMAIL_HELP } from "@/lib/admissions/validation";
 import type { PublicAdmissionResult } from "@/lib/admissions/tracking-types";
 
 type LookupResponse = { application?: PublicAdmissionResult; message?: string };
@@ -57,7 +57,8 @@ export default function TrackingLookup() {
             <div className="portal-v2-form-heading"><span className="portal-overline">CONSULTA TU POSTULACIÓN</span><h2 id="portal-form-title">¿Cómo va<br/><em>tu solicitud?</em></h2><p>Utiliza el correo institucional con el que te registraste y tu código privado. Solo tú debes conservar ese acceso.</p></div>
             <form onSubmit={submit} className="portal-form portal-v2-form">
               <label htmlFor="portal-email">Correo institucional</label>
-              <input id="portal-email" name="email" type="email" inputMode="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} placeholder={`nombre@${INSTITUTION_DOMAIN}`} required maxLength={254} />
+              <input id="portal-email" name="email" type="email" inputMode="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} placeholder={EMAIL_HINT} aria-describedby="portal-email-help" required maxLength={254} />
+              <p id="portal-email-help" className="portal-field-help">{INSTITUTION_EMAIL_HELP}</p>
               <label htmlFor="portal-code">Código o enlace privado</label>
               <textarea id="portal-code" name="trackingCode" value={trackingCode} onChange={e => setTrackingCode(e.target.value)} placeholder="Pega el código que recibiste al registrarte" required rows={2} maxLength={2048} autoCapitalize="off" autoComplete="off" spellCheck={false} />
               <p className="portal-field-help"><span aria-hidden="true">◇</span> No compartas tu código: permite consultar información personal.</p>

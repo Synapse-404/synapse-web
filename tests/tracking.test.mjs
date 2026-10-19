@@ -4,6 +4,7 @@ import { extractTrackingCode, validateTrackingCredentials } from '../src/lib/adm
 
 const token = 'A'.repeat(43);
 const email = 'usuario@uniclaretiana.edu.co';
+const studentEmail = 'estudiante@miuniclaretiana.edu.co';
 
 test('acepta el código de 32 bytes en base64url y URL previa de seguimiento', () => {
   assert.equal(extractTrackingCode(token), token);
@@ -20,9 +21,11 @@ test('rechaza códigos malformados y rutas ajenas', () => {
 
 test('exige combinación correo institucional exacto + código privado', () => {
   assert.deepEqual(validateTrackingCredentials({ email: 'USUARIO@UNICLARETIANA.EDU.CO', trackingCode: token }), { email, trackingCode: token });
+  assert.deepEqual(validateTrackingCredentials({ email: ' ESTUDIANTE@MIUNICLARETIANA.EDU.CO ', trackingCode: token }), { email: studentEmail, trackingCode: token });
   for (const invalid of [
     { email: 'persona@gmail.com', trackingCode: token },
     { email: 'usuario@fake.uniclaretiana.edu.co', trackingCode: token },
+    { email: 'usuario@fake.miuniclaretiana.edu.co', trackingCode: token },
     { email, trackingCode: 'hola' },
     { email },
     null,

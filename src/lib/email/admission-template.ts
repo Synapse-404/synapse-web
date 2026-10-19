@@ -172,7 +172,7 @@ a{color:inherit}
 <!-- Datos -->
 <tr><td class="px" bgcolor="${INK}" style="background:${INK};padding:0 44px 36px;">
   <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%" bgcolor="${PANEL}" style="background:${PANEL};border:1px solid ${LINE};border-radius:12px;"><tr>
-    <td class="stack" width="55%" valign="top" style="padding:20px 24px;border-right:1px solid ${LINE};"><p style="margin:0 0 7px;font-family:${SANS};font-size:10px;line-height:14px;font-weight:700;${TRACK(1.6)}color:${MUTED};">PROGRAMA ACADÉMICO</p><p style="margin:0;font-family:${SANS};font-size:16px;line-height:23px;font-weight:700;color:#FFFFFF;">${safeProgram}</p></td>
+    <td class="stack" width="55%" valign="top" style="padding:20px 24px;border-right:1px solid ${LINE};"><p style="margin:0 0 7px;font-family:${SANS};font-size:10px;line-height:14px;font-weight:700;${TRACK(1.6)}color:${MUTED};">PROGRAMA O DEPENDENCIA</p><p style="margin:0;font-family:${SANS};font-size:16px;line-height:23px;font-weight:700;color:#FFFFFF;">${safeProgram}</p></td>
     <td class="stack stack-top" valign="top" style="padding:20px 24px;"><p style="margin:0 0 7px;font-family:${SANS};font-size:10px;line-height:14px;font-weight:700;${TRACK(1.6)}color:${MUTED};">ESTADO</p><p style="margin:0;font-family:${SANS};font-size:16px;line-height:23px;font-weight:700;color:${c.accent};">${escapeHtml(c.chip)}</p></td>
   </tr></table>
 </td></tr>
@@ -195,6 +195,6 @@ a{color:inherit}
 <tr><td height="4" bgcolor="${AMBER}" style="height:4px;border-radius:0 0 12px 12px;background-color:${AMBER};background-image:linear-gradient(90deg,${AMBER} 0%,${c.accent} 100%);${EMPTY}">&nbsp;</td></tr>
 </table></td></tr></table></body></html>`;
 
-  const text = `SYNAPSE · SEMILLERO DE INVESTIGACIÓN\n\nHola, ${name}.\n\n${c.title}\n\n${c.message}\n\n${c.detail}\n\nPrograma académico: ${data.program}\nEstado: ${c.chip}\n\n${c.action}: ${url}\n\n${data.status === "PENDING" ? "Tu enlace es personal; consérvalo y no lo compartas." : "También puedes consultar con tu correo y el código recibido al registrarte."}\n\nInvestigamos · Desarrollamos · Impactamos\nSYNAPSE · Uniclaretiana · Quibdó, Chocó\n${PUBLIC_SITE_URL}\n`;
+  const text = `SYNAPSE · SEMILLERO DE INVESTIGACIÓN\n\nHola, ${name}.\n\n${c.title}\n\n${c.message}\n\n${c.detail}\n\nPrograma o dependencia: ${data.program}\nEstado: ${c.chip}\n\n${c.action}: ${url}\n\n${data.status === "PENDING" ? "Tu enlace es personal; consérvalo y no lo compartas." : "También puedes consultar con tu correo y el código recibido al registrarte."}\n\nInvestigamos · Desarrollamos · Impactamos\nSYNAPSE · Uniclaretiana · Quibdó, Chocó\n${PUBLIC_SITE_URL}\n`;
   return { subject: c.subject, html, text };
 }

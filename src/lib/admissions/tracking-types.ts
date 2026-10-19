@@ -4,7 +4,7 @@ import type { AdmissionStatus } from "@/generated/prisma/client";
 export type PublicAdmissionResult = {
   fullName: string;
   program: string;
-  semester: number;
+  semester: number | null;
   status: AdmissionStatus;
   submittedAt: string;
   updatedAt: string;

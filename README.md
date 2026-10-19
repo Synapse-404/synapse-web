@@ -160,10 +160,16 @@ Ejemplo de estructura (reemplaza los datos y enlaces de ejemplo antes de añadir
 - `social`: añade únicamente redes reales. Puedes omitirlo o usar `{}`. Se admiten más redes, como `facebook`, `x`, `youtube`, `tiktok` u `orcid`; cualquier otra clave se muestra como etiqueta del enlace.
 ## Admisiones · notificaciones por correo (octubre de 2026)
 
-El formulario acepta **únicamente** correos `@uniclaretiana.edu.co`, con
-validación en frontend y servidor. No acepta `@miuniclaretiana.edu.co`,
-subdominios, Gmail ni dominios similares. La solicitud queda inicialmente
-**Recibida**, NO concede membresía automática. Cada cambio realizado por un
+El formulario acepta **exclusivamente** ambos dominios institucionales: 
+`@miuniclaretiana.edu.co` para estudiantes y `@uniclaretiana.edu.co` para
+personal docente y administrativo. Se validan las direcciones en frontend y en
+servidor; el portal de seguimiento utiliza la misma validación. No se aceptan
+subdominios, Gmail ni dominios similares. Para estudiantes se exige el semestre
+(1 a 10); para docentes y administrativos se solicita el área o dependencia y
+**no se exige semestre** (se guarda `NULL` en PostgreSQL). Esta adaptación requiere
+ejecutar la migración `20261019174500_optional_semester_for_institutional_staff`
+mediante `pnpm db:deploy` antes de utilizar el nuevo formulario en producción.
+La solicitud queda inicialmente **Recibida**, NO concede membresía automática. Cada cambio realizado por un
 administrador genera una notificación institucional al mismo correo:
 
 | Estado | Asunto | Destino del botón |

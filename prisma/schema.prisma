@@ -19,7 +19,7 @@ model AdmissionApplication {
   fullName       String               @db.VarChar(120)
   email          String               @unique @db.VarChar(254)
   program        String               @db.VarChar(120)
-  semester       Int
+  semester       Int?
   status         AdmissionStatus      @default(PENDING)
   trackingHash   String               @unique @db.VarChar(64)
   consentAt      DateTime

@@ -40,8 +40,8 @@ export default function AdmissionProgress({ application }: { application: Public
         </div>
       </div>
       <div className="portal-result-grid">
-        <div className="portal-detail"><span>PROGRAMA ACADÉMICO</span><strong>{application.program}</strong></div>
-        <div className="portal-detail"><span>SEMESTRE</span><strong>{application.semester}</strong></div>
+        <div className="portal-detail"><span>{application.semester === null ? "ÁREA O DEPENDENCIA" : "PROGRAMA ACADÉMICO"}</span><strong>{application.program}</strong></div>
+        <div className="portal-detail"><span>{application.semester === null ? "VINCULACIÓN" : "SEMESTRE"}</span><strong>{application.semester ?? "Docente o administrativo"}</strong></div>
         <div className="portal-detail"><span>FECHA DE REGISTRO</span><strong>{formatDate(application.submittedAt)}</strong></div>
         <div className="portal-detail"><span>ÚLTIMO MOVIMIENTO</span><strong>{formatDate(application.history.at(-1)?.at ?? application.updatedAt)}</strong></div>
       </div>
