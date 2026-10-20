@@ -160,15 +160,19 @@ Ejemplo de estructura (reemplaza los datos y enlaces de ejemplo antes de añadir
 - `social`: añade únicamente redes reales. Puedes omitirlo o usar `{}`. Se admiten más redes, como `facebook`, `x`, `youtube`, `tiktok` u `orcid`; cualquier otra clave se muestra como etiqueta del enlace.
 ## Admisiones · notificaciones por correo (octubre de 2026)
 
-El formulario acepta **exclusivamente** ambos dominios institucionales: 
-`@miuniclaretiana.edu.co` para estudiantes y `@uniclaretiana.edu.co` para
-personal docente y administrativo. Se validan las direcciones en frontend y en
-servidor; el portal de seguimiento utiliza la misma validación. No se aceptan
-subdominios, Gmail ni dominios similares. Para estudiantes se exige el semestre
-(1 a 10); para docentes y administrativos se solicita el área o dependencia y
-**no se exige semestre** (se guarda `NULL` en PostgreSQL). Esta adaptación requiere
-ejecutar la migración `20261019174500_optional_semester_for_institutional_staff`
-mediante `pnpm db:deploy` antes de utilizar el nuevo formulario en producción.
+El formulario de postulación acepta **únicamente** el dominio estudiantil
+`@miuniclaretiana.edu.co`. La restricción se comprueba tanto en el frontend
+como en el servidor y se comparte con el portal de seguimiento. El dominio
+`@uniclaretiana.edu.co` (docentes y administrativos), las cuentas personales,
+subdominios y dominios parecidos no pueden inscribirse mediante el formulario.
+Es obligatorio indicar programa académico y semestre (1 a 10).
+
+Esta actualización **no requiere una nueva migración de Prisma**. El campo
+`semester` permanece nullable en la base de datos para conservar compatibilidad
+con registros históricos, pero la API exige un semestre para toda inscripción
+nueva. El acceso y las cuentas del **panel administrativo** se gestionan por
+separado y no se ven afectados por el filtro de postulaciones.
+
 La solicitud queda inicialmente **Recibida**, NO concede membresía automática. Cada cambio realizado por un
 administrador genera una notificación institucional al mismo correo:
 

@@ -1,32 +1,30 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getInstitutionalApplicantType, normalizeInstitutionEmail, validateAdmissionInput } from '../src/lib/admissions/validation.ts';
+import { normalizeInstitutionEmail, validateAdmissionInput } from '../src/lib/admissions/validation.ts';
 
 const good = { fullName: 'María López', email: 'Estudiante@MIUNICLARETIANA.EDU.CO', program: 'Ingeniería de Sistemas', semester: 7, consent: true };
 
-test('normaliza ambos dominios institucionales exactos sin importar mayúsculas ni espacios', () => {
+test('acepta únicamente @miuniclaretiana.edu.co, normaliza mayúsculas y espacios', () => {
   assert.equal(normalizeInstitutionEmail(' Estudiante@MiUniclaretiana.Edu.Co '), 'estudiante@miuniclaretiana.edu.co');
-  assert.equal(normalizeInstitutionEmail(' Profesor@Uniclaretiana.Edu.Co '), 'profesor@uniclaretiana.edu.co');
-  assert.equal(normalizeInstitutionEmail('administracion@uniclaretiana.edu.co'), 'administracion@uniclaretiana.edu.co');
-  assert.equal(getInstitutionalApplicantType('Estudiante@miuniclaretiana.edu.co'), 'student');
-  assert.equal(getInstitutionalApplicantType('Docente@uniclaretiana.edu.co'), 'staff');
-  assert.equal(getInstitutionalApplicantType('persona@gmail.com'), null);
+  assert.equal(normalizeInstitutionEmail('Profesor@uniclaretiana.edu.co'), null);
+  assert.equal(normalizeInstitutionEmail('administracion@uniclaretiana.edu.co'), null);
 });
 
-test('rechaza dominios externos, imitaciones y direcciones malformadas', () => {
+test('rechaza el dominio de docentes, dominios externos, imitaciones y correos malformados', () => {
   for (const email of [
+    'docente@uniclaretiana.edu.co', 'administracion@uniclaretiana.edu.co',
     'estudiante@gmail.com', 'profesor@outlook.com',
     'estudiante@miuniclaretiana.edu.co.evil.com',
     'estudiante@uniclaretiana.edu.co.evil.com',
     'estudiante@sub.miuniclaretiana.edu.co', 'estudiante@sub.uniclaretiana.edu.co',
     'estudiante@miuniclaretiana.edu.com', 'estudiante@fakeuniclaretiana.edu.co',
-    'estudiante@uniclaretiana.edu.co.',
-    'estudiante@@uniclaretiana.edu.co', '.estudiante@miuniclaretiana.edu.co',
-    'estudiante..test@uniclaretiana.edu.co',
+    'estudiante@uniclaretiana.edu.co.', 'estudiante@@uniclaretiana.edu.co',
+    '.estudiante@miuniclaretiana.edu.co', 'estudiante..test@miuniclaretiana.edu.co',
+    'estudiante@miuniclaretiana.edu.co.',
   ]) assert.equal(normalizeInstitutionEmail(email), null, email);
 });
 
-test('acepta postulación completa y normaliza espacios', () => {
+test('acepta postulación de estudiante y normaliza espacios', () => {
   const result = validateAdmissionInput({ ...good, fullName: '  María  López   ' });
   assert.equal(result.ok, true);
   if (result.ok) {
@@ -36,22 +34,18 @@ test('acepta postulación completa y normaliza espacios', () => {
   }
 });
 
-test('permite postulación de docente o administrativo sin semestre académico', () => {
+test('rechaza postulación de docente o administrativo incluso con todos los demás datos válidos', () => {
   for (const email of ['Docente@UNICLARETIANA.EDU.CO', 'administracion@uniclaretiana.edu.co']) {
-    const result = validateAdmissionInput({ ...good, email, program: 'Coordinación Académica', semester: null });
-    assert.equal(result.ok, true, email);
-    if (result.ok) {
-      assert.equal(result.data.email, email.toLowerCase());
-      assert.equal(result.data.semester, null);
-      assert.equal(result.data.program, 'Coordinación Académica');
-    }
+    const result = validateAdmissionInput({ ...good, email, program: 'Coordinación Académica' });
+    assert.equal(result.ok, false, email);
+    if (!result.ok) assert.match(result.message, /miuniclaretiana\.edu\.co/);
   }
 });
 
-test('ignora semestre académico enviado para personal docente y administrativo', () => {
-  const result = validateAdmissionInput({ ...good, email: 'docente@uniclaretiana.edu.co', semester: 6 });
-  assert.equal(result.ok, true);
-  if (result.ok) assert.equal(result.data.semester, null);
+test('rechaza un registro sin semestre, incluso con el dominio permitido', () => {
+  for (const semester of [null, undefined, '', 0, 11, 2.5, 'a']) {
+    assert.equal(validateAdmissionInput({ ...good, semester }).ok, false, String(semester));
+  }
 });
 
 test('rechaza correo externo incluso con el resto de datos válidos', () => {

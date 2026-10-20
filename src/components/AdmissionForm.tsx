@@ -3,14 +3,13 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { EMAIL_HINT, INSTITUTION_EMAIL_ERROR, INSTITUTION_EMAIL_HELP, getInstitutionalApplicantType } from "@/lib/admissions/validation";
+import { EMAIL_HINT, INSTITUTION_EMAIL_ERROR, INSTITUTION_EMAIL_HELP, normalizeInstitutionEmail } from "@/lib/admissions/validation";
 
 export default function AdmissionForm() {
   const [pending, setPending] = useState(false);
   const [trackingPath, setTrackingPath] = useState("");
   const [trackingCode, setTrackingCode] = useState("");
   const [fieldError, setFieldError] = useState("");
-  const [applicantType, setApplicantType] = useState<"student" | "staff">("student");
   const [emailDelivery, setEmailDelivery] = useState<"sent" | "queued">("queued");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -19,8 +18,7 @@ export default function AdmissionForm() {
     const form = event.currentTarget;
     const values = new FormData(form);
     const email = String(values.get("email") ?? "").trim().toLowerCase();
-    const type = getInstitutionalApplicantType(email);
-    if (!type) {
+    if (!normalizeInstitutionEmail(email)) {
       setFieldError(INSTITUTION_EMAIL_ERROR);
       return;
     }
@@ -29,7 +27,7 @@ export default function AdmissionForm() {
     try {
       const res = await fetch("/api/admisiones", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName: values.get("fullName"), email, program: values.get("program"), semester: type === "student" ? Number(values.get("semester")) : null, consent: values.get("consent") === "on", website: values.get("website") }),
+        body: JSON.stringify({ fullName: values.get("fullName"), email, program: values.get("program"), semester: Number(values.get("semester")), consent: values.get("consent") === "on", website: values.get("website") }),
       });
       const body: { message?: string; trackingPath?: string; trackingCode?: string; emailDelivery?: "sent" | "queued" } = await res.json();
       if (!res.ok || !body.trackingPath) {
@@ -63,11 +61,11 @@ export default function AdmissionForm() {
       <label htmlFor="fullName">Nombre completo</label>
       <input required name="fullName" id="fullName" type="text" autoComplete="name" minLength={5} maxLength={120} placeholder="Tu nombre completo" />
       <label htmlFor="email">Correo institucional Uniclaretiana</label>
-      <input required name="email" id="email" type="email" autoComplete="email" maxLength={254} placeholder={EMAIL_HINT} aria-describedby="email-domain-help" onChange={event => setApplicantType(getInstitutionalApplicantType(event.target.value) === "staff" ? "staff" : "student")} />
+      <input required name="email" id="email" type="email" autoComplete="email" maxLength={254} placeholder={EMAIL_HINT} aria-describedby="email-domain-help" />
       <small id="email-domain-help" className="admission-form-hint">{INSTITUTION_EMAIL_HELP}</small>
       <div className="contact-form-half">
-        <div><label htmlFor="program">{applicantType === "staff" ? "Área o dependencia" : "Programa académico"}</label><input required name="program" id="program" type="text" minLength={3} maxLength={120} placeholder={applicantType === "staff" ? "Tu dependencia institucional" : "Tu carrera"} /></div>
-        {applicantType === "student" && <div><label htmlFor="semester">Semestre actual</label><input required name="semester" id="semester" type="number" min="1" max="10" step="1" placeholder="01" /></div>}
+        <div><label htmlFor="program">Programa académico</label><input required name="program" id="program" type="text" minLength={3} maxLength={120} placeholder=Tu carrera /></div>
+        <div><label htmlFor="semester">Semestre actual</label><input required name="semester" id="semester" type="number" min="1" max="10" step="1" placeholder="01" /></div>
       </div>
       <div className="admission-honeypot" aria-hidden="true"><label htmlFor="website">Sitio web</label><input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
       <label className="admission-consent"><input type="checkbox" name="consent" required /> <span>Autorizo que SYNAPSE trate estos datos exclusivamente para evaluar y gestionar mi solicitud de vinculación.</span></label>
